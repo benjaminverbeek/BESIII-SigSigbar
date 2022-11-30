@@ -1,0 +1,3 @@
+macro WorkArea "/home/benjamin/workarea/708"
+path_remove CMTPATH "${WorkArea}"
+path_prepend CMTPATH "${WorkArea}"

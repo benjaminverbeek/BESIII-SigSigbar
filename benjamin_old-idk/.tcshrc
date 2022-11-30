@@ -1,0 +1,5 @@
+source /home/benjamin/cmthome/cmthome-7.0.8/setupCMT.csh
+source /home/benjamin/cmthome/cmthome-7.0.8/setupCVS.csh
+source /home/benjamin/cmthome/cmthome-7.0.8/setup.csh
+source /home/benjamin/workarea/708/TestRelease/TestRelease-00-00-95/cmt/setup.csh
+source /cvmfs/common.ihep.ac.cn/software/hepjob/setup_hepjob.csh ustc

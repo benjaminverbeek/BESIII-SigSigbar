@@ -1,0 +1,242 @@
+#+1667442043
+ce
+#+1667974366
+passwd
+#+1667974433
+dir
+#+1667974609
+cd documents
+#+1667974627
+echo "hi"
+#+1667974645
+mkdir "Docs"
+#+1667974684
+whoami
+#+1667976372
+cwd
+#+1667976387
+mkdir cmthome
+#+1667976394
+cd cmthome
+#+1667976411
+cp -r /cvmfs/bes3.ihep.ac.cn/bes3sw/cmthome/cmthome-7.0.8 ./
+#+1667976476
+macro WorkArea "/home/benjamin/workarea/708"
+#+1667977564
+cd cmthome/cmthome-7.0.8/
+#+1667977608
+touch test.txt
+#+1667977622
+test.txt
+#+1668005547
+vi test.txt
+#+1668005835
+vi requirement
+#+1668006201
+cd /workfs2/bes/benjamin/workarea/708
+#+1668006226
+mkdiri workarea
+#+1668006239
+mkdir workarea
+#+1668006314
+rm -r 708
+#+1668006341
+touch 708
+#+1668006392
+cp -r $BesArea/TestRelease ./
+#+1668006625
+ls ..
+#+1668006659
+cd TestRelease/*/cmt
+#+1668006810
+cat requirement
+#+1668006814
+cat requirements
+#+1668006948
+cd/*/
+#+1668006957
+cd /*/
+#+1668006965
+cd /*/cmt
+#+1668006975
+cd ./*/cmt
+#+1668007479
+source /workfs2/bes/user/workarea/708/TestRelease/TestRelease-00-00-95/cmt/setup.csh
+#+1668008607
+cd ~
+#+1668009346
+python
+#+1668081190
+vi run
+#+1668081240
+vi HelloWorldOptions.txt
+#+1668088422
+mkdir Patrik
+#+1668088448
+cp -r /home/lliu/Patrik/XiXibar-00-00-03
+#+1668088465
+cp -r /home/lliu/Patrik/XiXibar-00-00-03 ./
+#+1668088493
+vi XiXibar-00-00-03/
+#+1668088533
+vi XiXibarAlg
+#+1668147551
+vimtutor
+#+1668417549
+vi rhopi.dec
+#+1668418134
+vi jobOptions_rec
+#+1668418144
+vi jobOptions_rec.txt
+#+1668418684
+cd Pa
+#+1668418756
+cd share
+#+1668418770
+vi jobOptions_XiXibar.txt
+#+1668418817
+cd x86_64-slc6-gcc46-opt/
+#+1668418860
+cd XiXibar.d
+#+1668418869
+vi XiXibar.d
+#+1668419064
+cd components/
+#+1668419222
+vi jobOptions_ana_rhopi.txt
+#+1668419346
+vi XiXibar.h
+#+1668419399
+cd src
+#+1668419410
+vi XiXibar.cxx
+#+1668580400
+cd Docs/
+#+1668580426
+cd *
+#+1668647696
+cd cmthome/*
+#+1668647803
+source setupCMT.sh
+#+1668647810
+vi setupCMT.sh
+#+1668647837
+vi setupCMT.csh
+#+1668647851
+source setupCMT.csh
+#+1668648117
+cd cmthome-7.0.8/
+#+1668648317
+cd home/benjamin/workarea
+#+1668648356
+cd TE
+#+1668648369
+cd cmt/
+#+1668648413
+cmt broadcast cmt config
+#+1668648427
+source setup.csh
+#+1668648440
+cd run
+#+1668648561
+cd x86_64-slc5-gcc43-opt/
+#+1668648666
+cd Patrik/
+#+1668648674
+cd XiXibar-00-00-03/
+#+1668648756
+rm x86_64-slc6-gcc46-opt/
+#+1668648770
+rm -r x86_64-slc6-gcc46-opt/
+#+1668648782
+rm -r x86_64-slc5-gcc43-opt/
+#+1668648896
+cd XiXibarAlg/
+#+1668648917
+vi AADecay12.hh
+#+1668648978
+la
+#+1668649037
+mv XiXibar-00-00-03/ XiXibarAlg-00-00-03
+#+1668649046
+cd XiXibarAlg-00-00-03/
+#+1668649202
+vi requirements
+#+1668649255
+mv Patrik/ XiXibarAlg
+#+1668649264
+cd XiXibarAlg/XiXibarAlg-00-00-03/
+#+1668649275
+cd cmt
+#+1668649278
+cmt clean
+#+1668649302
+cmt config
+#+1668649308
+cmt make
+#+1668672745
+cd TestRelease-00-00-95/
+#+1668672922
+rm .tcshrc.swp
+#+1668673199
+cd cmthome/
+#+1668673203
+ls .
+#+1668674324
+cd workarea/TestRelease/TestRelease-00-00-95/
+#+1668674331
+vi .
+#+1668674366
+cd .
+#+1668674382
+cd
+#+1668674384
+ls -a
+#+1668674405
+vi .tcshrc
+#+1668674699
+rm 708
+#+1668674728
+mkdir 708
+#+1668674801
+mv TestRelease/ /708
+#+1668674819
+mv TestRelease/ ./708
+#+1668674825
+cd 708
+#+1668674830
+cd TestRelease/
+#+1668674994
+echo $CMTPATH
+#+1668675030
+cd 708/
+#+1668675064
+cp TestRelease/ ../ -r
+#+1668675067
+cd ..
+#+1668675142
+cd TestRelease/TestRelease-00-00-95/
+#+1668675145
+cd run/
+#+1668675160
+boss.exe HelloWorldOptions.txt
+#+1668675196
+vim jobOptions_sim.txt
+#+1668693489
+cd workarea/
+#+1668693516
+cd TestRelease/TestRelease-00-00-95/run/jobOptions_sim.txt
+#+1668693532
+cd TestRelease/TestRelease-00-00-95/run
+#+1668693542
+vi jobOptions_sim.txt
+#+1668694902
+vi text-demo.txt
+#+1668695210
+echo "Remote Hello!" > remote-text-demo.txt
+#+1668695212
+ls
+#+1668695290
+pwd
+#+1668695600
+exit

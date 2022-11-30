@@ -1,0 +1,464 @@
+#+1667442043
+ce
+#+1667974366
+passwd
+#+1667974433
+dir
+#+1667974609
+cd documents
+#+1667974627
+echo "hi"
+#+1667974645
+mkdir "Docs"
+#+1667976372
+cwd
+#+1667976387
+mkdir cmthome
+#+1667976394
+cd cmthome
+#+1667976411
+cp -r /cvmfs/bes3.ihep.ac.cn/bes3sw/cmthome/cmthome-7.0.8 ./
+#+1667976476
+macro WorkArea "/home/benjamin/workarea/708"
+#+1667977564
+cd cmthome/cmthome-7.0.8/
+#+1667977608
+touch test.txt
+#+1667977622
+test.txt
+#+1668005547
+vi test.txt
+#+1668005835
+vi requirement
+#+1668006201
+cd /workfs2/bes/benjamin/workarea/708
+#+1668006226
+mkdiri workarea
+#+1668006239
+mkdir workarea
+#+1668006314
+rm -r 708
+#+1668006341
+touch 708
+#+1668006392
+cp -r $BesArea/TestRelease ./
+#+1668006625
+ls ..
+#+1668006659
+cd TestRelease/*/cmt
+#+1668006810
+cat requirement
+#+1668006814
+cat requirements
+#+1668006948
+cd/*/
+#+1668006957
+cd /*/
+#+1668006965
+cd /*/cmt
+#+1668006975
+cd ./*/cmt
+#+1668007479
+source /workfs2/bes/user/workarea/708/TestRelease/TestRelease-00-00-95/cmt/setup.csh
+#+1668008607
+cd ~
+#+1668009346
+python
+#+1668081190
+vi run
+#+1668081240
+vi HelloWorldOptions.txt
+#+1668088422
+mkdir Patrik
+#+1668088448
+cp -r /home/lliu/Patrik/XiXibar-00-00-03
+#+1668088465
+cp -r /home/lliu/Patrik/XiXibar-00-00-03 ./
+#+1668088493
+vi XiXibar-00-00-03/
+#+1668088533
+vi XiXibarAlg
+#+1668147551
+vimtutor
+#+1668417549
+vi rhopi.dec
+#+1668418134
+vi jobOptions_rec
+#+1668418684
+cd Pa
+#+1668418756
+cd share
+#+1668418770
+vi jobOptions_XiXibar.txt
+#+1668418817
+cd x86_64-slc6-gcc46-opt/
+#+1668418860
+cd XiXibar.d
+#+1668418869
+vi XiXibar.d
+#+1668419064
+cd components/
+#+1668419346
+vi XiXibar.h
+#+1668419410
+vi XiXibar.cxx
+#+1668580400
+cd Docs/
+#+1668647696
+cd cmthome/*
+#+1668647803
+source setupCMT.sh
+#+1668647810
+vi setupCMT.sh
+#+1668647837
+vi setupCMT.csh
+#+1668647851
+source setupCMT.csh
+#+1668648117
+cd cmthome-7.0.8/
+#+1668648317
+cd home/benjamin/workarea
+#+1668648356
+cd TE
+#+1668648413
+cmt broadcast cmt config
+#+1668648561
+cd x86_64-slc5-gcc43-opt/
+#+1668648666
+cd Patrik/
+#+1668648674
+cd XiXibar-00-00-03/
+#+1668648756
+rm x86_64-slc6-gcc46-opt/
+#+1668648770
+rm -r x86_64-slc6-gcc46-opt/
+#+1668648782
+rm -r x86_64-slc5-gcc43-opt/
+#+1668648896
+cd XiXibarAlg/
+#+1668648917
+vi AADecay12.hh
+#+1668648978
+la
+#+1668649037
+mv XiXibar-00-00-03/ XiXibarAlg-00-00-03
+#+1668649046
+cd XiXibarAlg-00-00-03/
+#+1668649255
+mv Patrik/ XiXibarAlg
+#+1668649264
+cd XiXibarAlg/XiXibarAlg-00-00-03/
+#+1668672922
+rm .tcshrc.swp
+#+1668673199
+cd cmthome/
+#+1668673203
+ls .
+#+1668674331
+vi .
+#+1668674366
+cd .
+#+1668674405
+vi .tcshrc
+#+1668674699
+rm 708
+#+1668674728
+mkdir 708
+#+1668674801
+mv TestRelease/ /708
+#+1668674819
+mv TestRelease/ ./708
+#+1668674994
+echo $CMTPATH
+#+1668675030
+cd 708/
+#+1668675064
+cp TestRelease/ ../ -r
+#+1668675160
+boss.exe HelloWorldOptions.txt
+#+1668675196
+vim jobOptions_sim.txt
+#+1668693516
+cd TestRelease/TestRelease-00-00-95/run/jobOptions_sim.txt
+#+1668693532
+cd TestRelease/TestRelease-00-00-95/run
+#+1668694902
+vi text-demo.txt
+#+1668695210
+echo "Remote Hello!" > remote-text-demo.txt
+#+1668697751
+zip -r benjamin.zip benjamin
+#+1668697764
+zip -r benjamin.zip .
+#+1668697962
+cd benjamin.zip
+#+1668697967
+vi benjamin.zip
+#+1668736147
+vi rhopi_benjamin.rtraw
+#+1668739575
+vi $BESEVENTMIXERROOT/share/jobOptions_EventMixer_rec.txt
+#+1668740798
+ls -lh
+#+1668740941
+cd 708
+#+1668741002
+cp -r $RHOPIALGROOT/ .
+#+1668741027
+rm RhopiAlg-00-00-23/
+#+1668741041
+rm -r RhopiAlg-00-00-23/
+#+1668741056
+cp -r $RHOPIALGROOT .
+#+1668741065
+cd RhopiAlg-00-00-23/
+#+1668741074
+cd cmt/
+#+1668741179
+mkdir RhopiAlg
+#+1668741211
+cd RhopiAlg
+#+1668741223
+mv ../RhopiAlg-00-00-23/
+#+1668741231
+mv ../RhopiAlg-00-00-23/ .
+#+1668741346
+cd TestRelease/
+#+1668741349
+cd TestRelease-00-00-95/
+#+1668741365
+vi requirements
+#+1668741423
+cmt br cmt config
+#+1668741441
+source setup.csh
+#+1668741457
+cd $RHOPIALGROOT/
+#+1668742119
+cd TestRelease/TestRelease-00-00-95/
+#+1668746359
+zip RhopiAlg.zip RhopiAlg/ .
+#+1668746650
+zip -r RhopiAlg.zip RhopiAlg/ .
+#+1668754532
+echo "Hello"
+#+1668756368
+cd workarea
+#+1668756377
+rm RhopiAlg.zip
+#+1668756394
+cd workarea/RhopiAlg/RhopiAlg-00-00-23/ru
+#+1668756398
+cd workarea/RhopiAlg/RhopiAlg-00-00-23/run
+#+1668866674
+gcc --version
+#+1668866815
+ls -a
+#+1668866894
+cd myu
+#+1668997385
+cd .vscode-server/
+#+1668997391
+cd bin
+#+1668997415
+cd node
+#+1668997421
+vi node
+#+1668997518
+cd cvmfs/bes3.ihep.ac.cn/
+#+1668997549
+cd bes3sw/
+#+1668997568
+cd ExternalLib/SLC6/contrib/gcc
+#+1668997584
+cd 4.6.3/
+#+1668997594
+cd x86_64-slc6/
+#+1668997601
+cd lib
+#+1668997666
+vi libstdc++.so.6
+#+1668997738
+strings /libstdc++.so.6 | grep GLIBCXX
+#+1668997770
+strings libstdc++.so.6 | grep GLIBCXX
+#+1668998483
+cd /cvmfs/bes3.ihep.ac.cn/bes3sw/ExternalLib/SLC6/contrib/gcc/4.6.3/x86_64-slc6/li
+#+1668998655
+strings /usr/lib/libstdc++.so.6 | grep GLIBC
+#+1668998700
+apt-cache policy GLIBCXX
+#+1668998761
+apt-cache policy
+#+1668999399
+sudo apt-get install GLIBCXX=3.4.18
+#+1668999733
+psd
+#+1668999930
+sudo apt-get GLIBCXX=3.4.18
+#+1669000012
+whoami
+#+1669003879
+cd /cvmfs/bes3.ihep.ac.cn/bes3sw/ExternalLib/SLC6/contrib/gcc/4.6.3/x86_64-slc6/
+#+1669003885
+cd lib64/
+#+1669003940
+strings libstdc++.so.6 | grep GLIBC
+#+1669013661
+source ./opt/rh/devtoolset-11/enable
+#+1669013872
+cd opt/rh/devtoolset-11/
+#+1669013888
+source enable
+#+1669013909
+pwd
+#+1669013991
+source /opt/rh/devtoolset-11/enable
+#+1669014087
+source :/opt/rh/devtoolset-11/enable
+#+1669014104
+source $:/opt/rh/devtoolset-11/enable
+#+1669020887
+cd TestRelease/*
+#+1669020910
+cd run
+#+1669025071
+.ls
+#+1669084227
+cd RhopiAlg-00-00-23/src
+#+1669084249
+lx
+#+1669084804
+cd RhopiAlg/RhopiAlg-00-00-23/src/
+#+1669084865
+make Rhopi.cxx
+#+1669084941
+ll
+#+1669084945
+cd cmt
+#+1669085115
+cd RhopiAlg/RhopiAlg-00-00-23/
+#+1669085900
+cd TestRelease/TestRelease-00-00-95/run/
+#+1669169528
+cd src/
+#+1669184481
+clear
+#+1669190328
+cd workarea/RhopiAlg/RhopiAlg-00-00-23/
+#+1669190343
+cd src
+#+1669297702
+cd workarea/TestRelease/TestRelease-00-00-95/
+#+1669297704
+cd run/
+#+1669297920
+vi jobOptions_ana_rhopi.txt .txt
+#+1669298103
+cd ..'
+#+1669298117
+cd wp
+#+1669298126
+cd RhopiAlg/
+#+1669298138
+cd RhopiAlg-00-00-23/src/
+#+1669298148
+vi Rhopi.cxx
+#+1669298201
+cmt clean
+#+1669298210
+cmt config
+#+1669298217
+cmt make
+#+1669300142
+vi jobOptions_ana_rhopi.txt
+#+1669300259
+exit
+#+1669300533
+boss.exe jobOptions_ana_rhopi.txt
+#+1669340631
+vi jobOptions_sim.txt
+#+1669340881
+cd workarea/TestRelease/TestRelease-00-00-95/ru
+#+1669340883
+cd workarea/TestRelease/TestRelease-00-00-95/run
+#+1669340888
+boss.exe jobOptions_rec.txt
+#+1669340909
+cd $BESEVTGENROOT/share/
+#+1669340916
+vi DECAY.DEC
+#+1669341268
+vi jobOptions_rec.txt
+#+1669341366
+boss.exe jobOptions_sim.txt
+#+1669341939
+root -l
+#+1669341969
+cd workarea/TestRelease/TestRelease-00-00-95/run/
+#+1669341984
+root -l rhopi_ana.root
+#+1669342326
+cd
+#+1669342330
+cd workarea/RhopiAlg/
+#+1669342334
+cd *
+#+1669342342
+cd ..
+#+1669342354
+mkdir SigmaSigmabarAlg
+#+1669342374
+mkdir SigmaSigmabarAlg-00-00-01
+#+1669342420
+cp -r ../../RhopiAlg/RhopiAlg-00-00-23/cmt .
+#+1669342426
+cp -r ../../RhopiAlg/RhopiAlg-00-00-23/src .
+#+1669342443
+cp -r ../../RhopiAlg/RhopiAlg-00-00-23/Rhopi .
+#+1669342448
+cp -r ../../RhopiAlg/RhopiAlg-00-00-23/RhopiAlg/ .
+#+1669342469
+cp -r ../../RhopiAlg/RhopiAlg-00-00-23/share/ .
+#+1669342507
+grep "Rhopi" */*
+#+1669342574
+grep "Rhopi" */*/*
+#+1669343303
+cd workarea/
+#+1669343312
+cd SigmaSigmabarAlg-00-00-01/
+#+1669343428
+cp -r RhopiAlg/ SigmaSigmabarAlg/
+#+1669343433
+cd SigmaSigmabarAlg/
+#+1669343960
+ls
+6
+cp Rhopi.h SigmaSigmabar.h
+#+1669344050
+vi SigmaSigmabar.h
+#+1669344236
+cd s
+#+1669344240
+cd share/
+#+1669344241
+LS
+#+1669344263
+vi jobOptions_Rhopi.txt
+#+1669344669
+cd src/
+#+1669344682
+cp Rhopi.cxx SigmaSigmabar.cxx
+#+1669344693
+vi SigmaSigmabar.cxx
+#+1669344833
+cd ..
+#+1669344837
+cd cmt/
+#+1669344841
+cd CVS
+#+1669348673
+ls
+#+1669348678
+vi Entries

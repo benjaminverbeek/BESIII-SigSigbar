@@ -1,0 +1,23 @@
+package XiXibarAlg
+author He Kanglin <franekaeraetr>
+
+use BesPolicy BesPolicy-*
+use GaudiInterface GaudiInterface-* External
+
+use DstEvent DstEvent-* Event
+use EventModel   EventModel-*  Event
+use EvtRecEvent EvtRecEvent-* Event
+
+#use TrackCorrection TrackCorrection-00-* ${TRACKCORRECTIONROOT}/../..
+use VertexFit    VertexFit-*   Analysis 
+use ParticleID   ParticleID-*  Analysis
+
+use BesROOT      BesROOT-00-*     External
+use McTruth      McTruth-*        Event
+
+use PartPropSvc  *
+
+apply_pattern component_library 
+library XiXibar  *.cxx  components/*.cxx
+
+apply_pattern declare_runtime files=*.txt

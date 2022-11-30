@@ -1,0 +1,23 @@
+event 47
+Hello world!
+Hello world from PC --------------------!
+execute()
+event 48
+Hello world!
+Hello world from PC --------------------!
+execute()
+event 49
+Hello world!
+Hello world from PC --------------------!
+before pid
+before 4c
+ApplicationMgr       INFO Application Manager Stopped successfully
+total number:         50
+nGood==2, nCharge==0: 42
+nGam>=2:              33
+Pass Pid:             32
+Pass 4C:              27
+Pass 5C:              25
+J/psi->rho0 pi0:      9
+ApplicationMgr       INFO Application Manager Finalized successfully
+ApplicationMgr       INFO Application Manager Terminated successfully

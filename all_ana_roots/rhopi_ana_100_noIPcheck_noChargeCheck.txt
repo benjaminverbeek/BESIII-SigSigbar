@@ -1,0 +1,11 @@
+event 99
+Hello world!
+Hello world from PC --------------------!
+ApplicationMgr       INFO Application Manager Stopped successfully
+total number         100
+nGood==2, nCharge==0 100
+nGam=2              74
+Pass Pid             60
+Pass 4C              50
+Pass 5C              47
+Jpsi-rho0 pi0      13

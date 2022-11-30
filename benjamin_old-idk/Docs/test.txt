@@ -1,0 +1,23 @@
+Hello, this is my vim practise document.
+
+I have never worked with vim before (as of 2022-11-09), but as a
+total nerd, I have ofcourse heard of it and watched videos.
+
+Nor do I typically use Unix or Linux. I want to learn though.
+
+Benjamin Verbeek
+Dongguan International Health Station (Quarantine facility)
+2022-11-09
+
+LEARNT SO FAR:
+i	- insert mode
+esc	- command mode
+x	- delete marked 
+u	- undo last command
+U	- undo entire line
+A	- append text at end of line (changes to insert mode)
+:wq	- save and exit... (hypothesis: w-write q-quit?)
+testing just :q -- it actually catches it as an error if not written
+since last change. Adding ! ovverides, i.e. :q! - quit without saving
+:w does indeed save (write)
+CTRL-R	- redo last change

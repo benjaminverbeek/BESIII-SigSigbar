@@ -1,0 +1,15 @@
+Hello world from PC --------------------!
+execute()
+event 99
+Hello world!
+Hello world from PC --------------------!
+ApplicationMgr       INFO Application Manager Stopped successfully
+total number:         100
+nGood==2, nCharge==0: 81
+nGam>=2:              62
+Pass Pid:             58
+Pass 4C:              49
+Pass 5C:              46
+J/psi->rho0 pi0:      13
+ApplicationMgr       INFO Application Manager Finalized successfully
+ApplicationMgr       INFO Application Manager Terminated successfully

@@ -1,0 +1,15 @@
+event 999
+Hello world!
+Hello world from PC --------------------!
+before pid
+before 4c
+ApplicationMgr       INFO Application Manager Stopped successfully
+total number:         1000
+nGood==2, nCharge==0: 754
+nGam>=2:              601
+Pass Pid:             574
+Pass 4C:              497
+Pass 5C:              469
+J/psi->rho0 pi0:      123
+ApplicationMgr       INFO Application Manager Finalized successfully
+ApplicationMgr       INFO Application Manager Terminated successfully

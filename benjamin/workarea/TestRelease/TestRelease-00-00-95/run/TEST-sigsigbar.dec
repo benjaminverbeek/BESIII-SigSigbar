@@ -1,0 +1,26 @@
+
+Decay J/psi
+  1.0000 sig0 sigbar0 HELAMP 1.0 0.0 0.0 0.0 -1.0 0.0;
+Enddecay
+
+Decay sig0
+    1.0000 lamb gam .....?? ;
+Enddecay
+
+Decay sigbar0
+    1.0000 lambbar gam .....?? ;
+Enddecay
+
+Decay lamb
+    1.0000 p+ pi- .....?? ;
+Enddecay
+
+Decay lambbar
+    1.0000 p- pi+ .....?? ;
+Enddecay
+
+End
+
+
+
+

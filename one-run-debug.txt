@@ -1,0 +1,1327 @@
+
+**************************************************
+               BOSS version: 7.0.8
+************** BESIII Collaboration **************
+
+the jobOptions file is : jobOptions_ana_sigmasigmabar.txt
+JobOptionsSvc        INFO # =======> /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/Event/RootIO/RootIO-00-01-33/share/jobOptions_ReadRec.txt
+JobOptionsSvc        INFO # (2,1): ApplicationMgr.DLLs += ["RecMakerAlg"]
+JobOptionsSvc        INFO # (3,1): ApplicationMgr.TopAlg += ["RecMakerAlg"]
+JobOptionsSvc        INFO # (5,1): ApplicationMgr.DLLs += ["RootCnvSvc"]
+JobOptionsSvc        INFO # (7,1): ApplicationMgr.ExtSvc += ["EvtPersistencySvc/EventPersistencySvc"]
+JobOptionsSvc        INFO # (8,1): ApplicationMgr.ExtSvc += ["RootEvtSelector/EventSelector", "RootCnvSvc/EventCnvSvc"]
+JobOptionsSvc        INFO # (10,1): EventPersistencySvc.CnvServices += ["EventCnvSvc"]
+JobOptionsSvc        INFO # =======> /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/Control/OfflineEventLoopMgr/OfflineEventLoopMgr-00-00-15/share/OfflineEventLoopMgr_Option.t
+JobOptionsSvc        INFO # (1,1): ApplicationMgr.DLLs += ["DummyLoadOldROOT"]
+JobOptionsSvc        INFO # (2,1): ApplicationMgr.TopAlg += ["DummyLoadOldROOTAlg"]
+JobOptionsSvc        INFO # (3,1): DummyLoadOldROOTAlg.OldRootList = ["$DUMMYLOADOLDROOTROOT/share/ROOT-version-52400.root"]
+JobOptionsSvc        INFO # (5,1): ApplicationMgr.DLLs += ["OfflineEventLoopMgr"]
+JobOptionsSvc        INFO # (6,1): ApplicationMgr.EventLoop = "OfflineEventLoopMgr"
+JobOptionsSvc        INFO # =======> /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/Database/DatabaseSvc/DatabaseSvc-00-00-26/share/DatabaseConfig.txt
+JobOptionsSvc        INFO # (1,1): ApplicationMgr.DLLs += ["DatabaseSvc"]
+JobOptionsSvc        INFO # (2,1): ApplicationMgr.ExtSvc += ["DatabaseSvc"]
+JobOptionsSvc        INFO # (4,1): DatabaseSvc.DbType = "mysql"
+JobOptionsSvc        INFO # (5,1): DatabaseSvc.Host = "bes3db2.ihep.ac.cn"
+JobOptionsSvc        INFO # (6,1): DatabaseSvc.User = "guest"
+JobOptionsSvc        INFO # (7,1): DatabaseSvc.Passwd = "guestpass"
+JobOptionsSvc        INFO # (8,1): DatabaseSvc.SqliteDbPath = "$SITEROOT/database"
+JobOptionsSvc        INFO # (9,1): DatabaseSvc.ReuseConnection = 1
+JobOptionsSvc        INFO # =======> /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/Analysis/VertexFit/VertexFit-00-02-91/share/jobOptions_VertexDbSvc.txt
+JobOptionsSvc        INFO # (3,1): ApplicationMgr.DLLs += ["VertexFit"]
+JobOptionsSvc        INFO # (4,1): ApplicationMgr.ExtSvc += ["VertexDbSvc"]
+JobOptionsSvc        INFO # (7,1): VertexDbSvc.BossRelease = "7.0.8"
+JobOptionsSvc        INFO # =======> /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/MagneticField/MagneticField-00-02-04/share/MagneticField.txt
+JobOptionsSvc        INFO # (2,1): ApplicationMgr.DLLs += ["MagneticField"]
+JobOptionsSvc        INFO # (3,1): ApplicationMgr.ExtSvc += ["MagneticFieldSvc"]
+JobOptionsSvc        INFO # (5,1): MagneticFieldSvc.IfRealField = 1
+JobOptionsSvc        INFO # (8,1): MagneticFieldSvc.OutLevel = 1
+JobOptionsSvc        INFO # (11,1): MagneticFieldSvc.GridDistance = 5
+JobOptionsSvc        INFO # (21,1): MagneticFieldSvc.RunMode = 3
+JobOptionsSvc        INFO # (24,1): MagneticFieldSvc.Cur_SCQ1_55 = 349.4
+JobOptionsSvc        INFO # (25,1): MagneticFieldSvc.Cur_SCQ1_89 = 426.2
+JobOptionsSvc        INFO # (26,1): MagneticFieldSvc.Cur_SCQ2_10 = 474.2
+JobOptionsSvc        INFO # (28,1): MagneticFieldSvc.UseDBFlag = 1
+JobOptionsSvc        INFO # (29,1): MagneticFieldSvc.TurnOffField = 0
+JobOptionsSvc        INFO # =======> /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/Analysis/PhotonCor/AbsCor/AbsCor-00-00-40/share/jobOptions_AbsCor.txt
+JobOptionsSvc        INFO # (1,1): ApplicationMgr.DLLs += ["EmcRecGeoSvc"]
+JobOptionsSvc        INFO # (2,1): ApplicationMgr.ExtSvc += ["EmcRecGeoSvc"]
+JobOptionsSvc        INFO # (4,1): ApplicationMgr.DLLs += ["AbsCor", "EmcShEnCalibSvc"]
+JobOptionsSvc        INFO # (5,1): ApplicationMgr.TopAlg += ["AbsCor"]
+JobOptionsSvc        INFO # (6,1): ApplicationMgr.ExtSvc += ["EmcShEnCalibSvc"]
+JobOptionsSvc        INFO # (8,1): AbsCor.NTupleOut = 0
+JobOptionsSvc        INFO # (9,1): AbsCor.UseTof = 1
+JobOptionsSvc        INFO # (10,1): AbsCor.DoDataCor = 1
+JobOptionsSvc        INFO # (12,1): AbsCor.MCUseTof = 1
+JobOptionsSvc        INFO # (13,1): AbsCor.DoPi0Cor = 1
+JobOptionsSvc        INFO # (15,1): AbsCor.MCCorUseFunction = 1
+JobOptionsSvc        INFO # (16,1): AbsCor.IYear = 2009
+JobOptionsSvc        INFO # (17,1): AbsCor.HotCellMask = 0
+JobOptionsSvc     WARNING # =======> /home/benjamin/workarea/SigmaSigmabarAlg/SigmaSigmabarAlg-00-00-01/share/jobOptions_SigmaSigmabar.txt
+JobOptionsSvc     WARNING # (1,1): File /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/Analysis/VertexFit/VertexFit-00-02-91/share/jobOptions_VertexDbSvc.txt already included n/workarea/TestRelease/TestRelease-00-00-95/run/jobOptions_ana_sigmasigmabar.txt: (2, 1)
+JobOptionsSvc        INFO # (2,1): ApplicationMgr.DLLs += ["SigmaSigmabarAlg"]
+JobOptionsSvc        INFO # (3,1): ApplicationMgr.TopAlg += ["SigmaSigmabar"]
+JobOptionsSvc        INFO # (5,1): SigmaSigmabar.Vr0cut = 1.0
+JobOptionsSvc        INFO # (6,1): SigmaSigmabar.Vz0cut = 5.0
+JobOptionsSvc        INFO # (8,1): SigmaSigmabar.EnergyThreshold = 0.04
+JobOptionsSvc        INFO # (9,1): SigmaSigmabar.GammaPhiCut = 20.0
+JobOptionsSvc        INFO # (10,1): SigmaSigmabar.GammaThetaCut = 20.0
+JobOptionsSvc        INFO # (11,1): SigmaSigmabar.GammaAngleCut = 20.0
+JobOptionsSvc        INFO # (13,1): SigmaSigmabar.Test4C = 1
+JobOptionsSvc        INFO # (14,1): SigmaSigmabar.Test5C = 1
+JobOptionsSvc        INFO # (15,1): SigmaSigmabar.CheckDedx = 1
+JobOptionsSvc        INFO # (16,1): SigmaSigmabar.CheckTof = 1
+JobOptionsSvc        INFO # =======> /home/benjamin/workarea/TestRelease/TestRelease-00-00-95/run/jobOptions_ana_sigmasigmabar.txt
+JobOptionsSvc        INFO # (8,1): EventCnvSvc.digiRootInputFile = ["sigmasigmabar.dst"]
+JobOptionsSvc        INFO # (11,1): MessageSvc.OutputLevel = 2
+JobOptionsSvc        INFO # (14,1): ApplicationMgr.EvtMax = 1
+JobOptionsSvc        INFO # (16,1): ApplicationMgr.HistogramPersistency = "ROOT"
+JobOptionsSvc        INFO # (17,1): NTupleSvc.Output = ["FILE1 DATAFILE='rhopi_ana.root' OPT='NEW' TYP='ROOT'"]
+JobOptionsSvc        INFO Job options successfully read in from jobOptions_ana_sigmasigmabar.txt
+ApplicationMgr      DEBUG Getting my own properties
+ApplicationMgr    SUCCESS 
+====================================================================================================================================
+                                                   Welcome to ApplicationMgr (GaudiCoreSvc v1r5)
+                                          running on ui01.hep.ustc.edu.cn on Mon Nov 28 10:12:29 2022
+====================================================================================================================================
+
+RooFit v3.56 -- Developed by Wouter Verkerke and David Kirkby 
+                Copyright (C) 2000-2013 NIKHEF, University of California & Stanford University
+                All rights reserved, please read http://roofit.sourceforge.net/license.txt
+
+ApplicationMgr       INFO Successfully loaded modules : RecMakerAlg, RootCnvSvc, DummyLoadOldROOT, OfflineEventLoopMgr, DatabaseSvc, VertexFit, MagneticField, EmcRecGeoSnCalibSvc, SigmaSigmabarAlg
+RootCnvSvc          DEBUG RootCnvSvc::constructor
+*** Read field map_Iron: /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/MagneticField/MagneticField-00-02-04/dat/barIronpar.txt
+*** Read field map_Air: /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/MagneticField/MagneticField-00-02-04/dat/barAirpar.txt
+*** Read field map_end: /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/MagneticField/MagneticField-00-02-04/dat/endIronpar.txt
+*** Read field map_end_air: /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/MagneticField/MagneticField-00-02-04/dat/endAirpar.txt
+ApplicationMgr       INFO Application Manager Configured successfully
+ServiceManager      DEBUG Initializing service IncidentSvc
+IncidentSvc         DEBUG Service base class initialized successfully
+ServiceManager      DEBUG Initializing service EventPersistencySvc
+EventPersistenc...  DEBUG  'CnvServices':[ 'EventCnvSvc' ]
+EventPersistenc...  DEBUG Service base class initialized successfully
+ServiceManager      DEBUG Initializing service EventSelector
+EventSelector       DEBUG Service base class initialized successfully
+EventSelector       DEBUG RootEvtSelector::initialize
+EventSelector        INFO RootEvtSelector input has been set to ROOT
+EventDataSvc        DEBUG Service base class initialized successfully
+EventSelector        INFO currentFile in RootEvtSelector::initialize 
+TagFilterSvc         INFO TagFilterSvc::initialize()
+TagFilterSvc        DEBUG Service base class initialized successfully
+EventSelector        INFO get the TagFilterSvc
+ServiceManager      DEBUG Initializing service EventCnvSvc
+EventCnvSvc         DEBUG RootCnvSvc::initialize
+EventCnvSvc         DEBUG Service base class initialized successfully
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Dst/DstMdcDedxCol classid: 132492
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Dst classid: 1400
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Digi/EmcDigiCol classid: 132392
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/MC/EmcMcHitCol classid: 132285
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Dst/DstEmcShowerCol classid: 132512
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event classid: 110
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/EventHeader classid: 112
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Navigator classid: 5101
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Dst/DstExtTrackCol classid: 132532
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/MC classid: 1200
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/MC/McParticleCol classid: 263345
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Digi/MdcDigiCol classid: 132382
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Dst/DstMdcKalTrackCol classid: 132487
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/MC/MdcMcHitCol classid: 132283
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Dst/DstMdcTrackCol classid: 132482
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Digi/MucDigiCol classid: 132412
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/MC/MucMcHitCol classid: 132286
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Dst/DstMucTrackCol classid: 132522
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Digi classid: 1300
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Digi/TofDigiCol classid: 132402
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/MC/TofMcHitCol classid: 132284
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Dst/DstTofTrackCol classid: 132502
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Digi/LumiDigiCol classid: 132422
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Trig classid: 2100
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Trig/TrigData classid: 2120
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Hlt classid: 2200
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Hlt/HltRawCol classid: 133282
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Hlt/HltInf classid: 2220
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Hlt/DstHltInf classid: 2230
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon classid: 3000
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecMdcTrackCol classid: 134182
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecMdcHitCol classid: 134192
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecMdcKalTrackCol classid: 134222
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecMdcKalHelixSegCol classid: 134232
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecMdcDedxCol classid: 134212
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecMdcDedxHitCol classid: 134217
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecEsTimeCol classid: 134682
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecTofTrackCol classid: 134402
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecBTofCalHitCol classid: 134422
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecETofCalHitCol classid: 134432
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecEmcHitCol classid: 134292
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecEmcClusterCol classid: 134302
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecEmcShowerCol classid: 134282
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecMucTrackCol classid: 134482
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/MucRecHitCol classid: 134492
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecExtTrackCol classid: 134582
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/Recon/RecZddChannelCol classid: 134882
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/EvtRec classid: 4000
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/EvtRec/EvtRecEvent classid: 4010
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/EvtRec/EvtRecTrackCol classid: 135172
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/EvtRec/EvtRecPrimaryVertex classid: 4020
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/EvtRec/EvtRecVeeVertexCol classid: 135182
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/EvtRec/EvtRecPi0Col classid: 135202
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/EvtRec/EvtRecEtaToGGCol classid: 135212
+EventCnvSvc         DEBUG RootCnvSvc::declareObject /Event/EvtRec/EvtRecDTagCol classid: 135192
+EventCnvSvc         DEBUG RootCnvSvc::initFiles
+EventCnvSvc          INFO Root Input files 1
+RootCnvSvc          DEBUG addInput  for Tree Event
+EventCnvSvc       WARNING No specified digiRootOutputFile!
+ServiceManager      DEBUG Initializing service DatabaseSvc
+DatabaseSvc         DEBUG Service base class initialized successfully
+DatabaseSvc         DEBUG Using MYSQL interface with options:
+DatabaseSvc         DEBUG 	dbHost bes3db2.ihep.ac.cn
+DatabaseSvc         DEBUG 	dbPort 3306
+DatabaseSvc         DEBUG 	dbUser guest
+DatabaseSvc         DEBUG 	dbPasswd guestpass
+DatabaseSvc         DEBUG One connection per job is used
+DatabaseSvc: Connected to MySQL database
+DatabaseSvc          INFO DatabaseSvc initialized successfully
+ServiceManager      DEBUG Initializing service VertexDbSvc
+VertexDbSvc          INFO VertexDbSvc::initialize()
+VertexDbSvc         DEBUG Service base class initialized successfully
+IncidentSvc         DEBUG Adding [NewRun] listener 'VertexDbSvc' with priority 100
+ServiceManager      DEBUG Initializing service MagneticFieldSvc
+MagneticFieldSvc    DEBUG Service base class initialized successfully
+IncidentSvc         DEBUG Adding [NewRun] listener 'MagneticFieldSvc' with priority 100
+ServiceManager      DEBUG Initializing service EmcRecGeoSvc
+EmcRecGeoSvc         INFO EmcRecGeoSvc: Start of run initialisation
+EmcRecGeoSvc        DEBUG Service base class initialized successfully
+Info in <TGeoManager::TGeoManager>: Geometry BesGeo, Bes geometry created
+Construct Emc from GdmlFile /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/DetectorDescription/GdmlManagement/GdmlManagement-00-00-44/dat/Emc.gdml
+SAXProcessor type ROOT
+SAXProcessor requires type 2
+Top Volume not found 
+Find logicalEMC!
+gGeoManager success!
+Info in <TGeoManager::SetTopVolume>: Top volume is volBes. Master volume is volBes
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 6, max placements = 309
+Info in <TGeoManager::CloseGeometry>: 71106 nodes/ 453 volume UID's in Bes geometry
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+ServiceManager      DEBUG Initializing service EmcShEnCalibSvc
+EmcShEnCalibSvc      INFO EmcShEnCalibSvc::initialize()
+EmcShEnCalibSvc     DEBUG Service base class initialized successfully
+IncidentSvc         DEBUG Adding [NewRun] listener 'EmcShEnCalibSvc' with priority 100
+ServiceManager      DEBUG Initializing service AppMgrRunable
+AppMgrRunable       DEBUG Service base class initialized successfully
+ServiceManager      DEBUG Initializing service OfflineEventLoopMgr
+OfflineEventLoo...  DEBUG Service base class initialized successfully
+IncidentSvc         DEBUG Adding [AbortEvent] listener '<unknown>' with priority 0
+OfflineEventLoo...  DEBUG Creating Top Algorithm RecMakerAlg with name RecMakerAlg
+OfflineEventLoo...  DEBUG Creating Top Algorithm DummyLoadOldROOTAlg with name DummyLoadOldROOTAlg
+OfflineEventLoo...  DEBUG Creating Top Algorithm AbsCor with name AbsCor
+OfflineEventLoo...  DEBUG Creating Top Algorithm SigmaSigmabar with name SigmaSigmabar
+RecMakerAlg          INFO in initialize()
+DummyLoadOldROO...  DEBUG Try to Load File: /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/Utilities/DummyLoadOldROOT/DummyLoadOldROOT-00-00-01/share/ROOT-version-52400.root
+AbsCor               INFO in initialize()
+getPi0CalibFile() and getSingleGammaCalibFile() still are empty in initialize()
+will be assigned a value in execute()
+Test EmcShEnCalibSvc in AbsCor initialize getPi0CalibFile()= Test EmcShEnCalibSvc in AbsCor getSingleGammaCalibFile()= 
+AbsCor               INFO successfully return from initialize()
+SigmaSigmabar        INFO in initialize()
+NTupleSvc           DEBUG Service base class initialized successfully
+NTupleSvcConver...  DEBUG Service base class initialized successfully
+NTupleSvc            INFO Added stream file:rhopi_ana.root as FILE1
+RFileCnv             INFO opening Root file "rhopi_ana.root" for writing
+RFileCnv            DEBUG creating ROOT file rhopi_ana.root
+SigmaSigmabar        INFO successfully return from initialize()
+HistogramDataSvc    DEBUG Service base class initialized successfully
+HistogramPersis...  DEBUG  'CnvServices':[ 'RootHistSvc' ]
+HistogramPersis...  DEBUG Service base class initialized successfully
+RootHistSvc         DEBUG Service base class initialized successfully
+RootHistSvc          INFO Writing ROOT histograms to: UndefinedROOTOutputFileName
+HistogramPersis...   INFO Added successfully Conversion service:RootHistSvc
+ApplicationMgr       INFO Application Manager Initialized successfully
+ServiceManager      DEBUG Starting service IncidentSvc
+ServiceManager      DEBUG Starting service EventPersistencySvc
+ServiceManager      DEBUG Starting service EventSelector
+ServiceManager      DEBUG Starting service EventCnvSvc
+ServiceManager      DEBUG Starting service DatabaseSvc
+ServiceManager      DEBUG Starting service VertexDbSvc
+ServiceManager      DEBUG Starting service MagneticFieldSvc
+ServiceManager      DEBUG Starting service EmcRecGeoSvc
+ServiceManager      DEBUG Starting service EmcShEnCalibSvc
+ServiceManager      DEBUG Starting service AppMgrRunable
+ServiceManager      DEBUG Starting service EventDataSvc
+ServiceManager      DEBUG Starting service TagFilterSvc
+ServiceManager      DEBUG Starting service NTupleSvc
+ServiceManager      DEBUG Starting service RootHistSvc
+ServiceManager      DEBUG Starting service HistogramPersistencySvc
+ServiceManager      DEBUG Starting service HistogramDataSvc
+ServiceManager      DEBUG Starting service OfflineEventLoopMgr
+ApplicationMgr       INFO Application Manager Started successfully
+EventSelector        INFO m_criteriaType == ROOT
+EventSelector        INFO entry = 1    0   0
+EventSelector       DEBUG Reading Event 0
+EventSelector       DEBUG Max Event 1
+EventPersistenc...   INFO Added successfully Conversion service:EventCnvSvc
+EventCnv            DEBUG EventCnv::EventCnv()
+EventCnv            DEBUG createObj
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  1300 *****  /Event/Digi
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  1400 *****  /Event/Dst
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  112 *****  /Event/EventHeader
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  4000 *****  /Event/EvtRec
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  2200 *****  /Event/Hlt
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  1200 *****  /Event/MC
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  5101 *****  /Event/Navigator
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  3000 *****  /Event/Recon
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  2100 *****  /Event/Trig
+EvtHeaderCnv        DEBUG  constructor of EvtHeaderCnv 
+EvtHeaderCnv        DEBUG EvtHeaderCnv::initialize
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 112
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_runId
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc           INFO RootInterface::opened file for input:sigmasigmabar.dst
+RootCnvSvc           INFO get JobInfoTree
+
+**************************************************
+Print JobInfo for data file: sigmasigmabar.dst
+          BOSS version: 7.0.8
+**************************************************
+
+
+**************************************************
+          Decay Options: 
+
+Decay J/psi
+  0.001172    Sigma0 anti-Sigma0                      J2BB1;
+Enddecay
+
+Decay Sigma0
+1.0000    gamma  Lambda0                     PHSP;
+Enddecay
+Decay anti-Sigma0
+1.0000    gamma  anti-Lambda0                   PHSP;
+Enddecay
+
+Decay Lambda0
+0.6390    p+  pi-                       PHSP;
+Enddecay
+
+Decay anti-Lambda0
+0.6390    anti-p-  pi+                       PHSP;
+Enddecay
+
+
+End
+
+
+
+
+
+**************************************************
+
+DataInfoSvc          INFO DataInfoSvc::initialize()
+DataInfoSvc         DEBUG Service base class initialized successfully
+RootCnvSvc           INFO get the DataInfoSvc
+
+**************************************************
+          JobOptions for this data file: 
+
+#include "$OFFLINEEVENTLOOPMGRROOT/share/OfflineEventLoopMgr_Option.txt"
+#include "$KKMCROOT/share/jobOptions_KKMC.txt"
+KKMC.CMSEnergy = 3.097;
+KKMC.BeamEnergySpread=0.0008;
+KKMC.NumberOfEventPrinted=1;
+KKMC.GenerateJPsi=true;
+#include "$BESEVTGENROOT/share/BesEvtGen.txt"
+EvtDecay.userDecayTableName = "sigmasigmabar.dec";
+BesRndmGenSvc.RndmSeed = 100;
+#include "$BESSIMROOT/share/G4Svc_BesSim.txt"
+#include "$CALIBSVCROOT/share/calibConfig_sim.txt"
+RealizationSvc.RunIdList = {-9989};
+#include "$ROOTIOROOT/share/jobOptions_Digi2Root.txt"
+MessageSvc.OutputLevel  = 5;
+ApplicationMgr.EvtMax = 1000;
+
+          end of the jobOptions file 
+**************************************************
+
+#include "$ROOTIOROOT/share/jobOptions_ReadRoot.txt"
+#include "$OFFLINEEVENTLOOPMGRROOT/share/OfflineEventLoopMgr_Option.txt"
+#include "$BESEVENTMIXERROOT/share/jobOptions_EventMixer_rec.txt"
+#include "$CALIBSVCROOT/share/job-CalibData.txt"
+#include "$MAGNETICFIELDROOT/share/MagneticField.txt"
+#include "$ESTIMEALGROOT/share/job_EsTimeAlg.txt"
+#include "$MDCHOUGHFINDERROOT/share/jobOptions_MdcPatTsfHoughRec.txt"
+#include "$KALFITALGROOT/share/job_kalfit_numf_data.txt"
+#include "$MDCDEDXALGROOT/share/job_dedx_all.txt"
+#include "$TRKEXTALGROOT/share/TrkExtAlgOption.txt"
+#include "$TOFRECROOT/share/jobOptions_TofRec.txt"
+#include "$TOFENERGYRECROOT/share/TofEnergyRecOptions_MC.txt"
+#include "$EMCRECROOT/share/EmcRecOptions.txt"
+#include "$MUCRECALGROOT/share/jobOptions_MucRec.txt"
+#include "$EVENTASSEMBLYROOT/share/EventAssembly.txt"
+#include "$PRIMARYVERTEXALGROOT/share/jobOptions_kalman.txt"
+#include "$VEEVERTEXALGROOT/share/jobOptions_veeVertex.txt"
+#include "$HLTMAKERALGROOT/share/jobOptions_HltMakerAlg.txt"
+#include "$EVENTNAVIGATORROOT/share/EventNavigator.txt"
+#include "$ROOTIOROOT/share/jobOptions_Dst2Root.txt"
+#include "$CALIBSVCROOT/share/calibConfig_rec_mc.txt"
+BesRndmGenSvc.RndmSeed = 100;
+MessageSvc.OutputLevel = 2; 
+EventCnvSvc.digiRootOutputFile ="sigmasigmabar.dst";
+ApplicationMgr.EvtMax = 1000;
+
+          end of the jobOptions file 
+**************************************************
+
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_eventId
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_time
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_eventTag
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_flag1
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_flag2
+RootCnvSvc           INFO RootInterface:;getTree
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 0, entry 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 1, entry 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 2, entry 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 3, entry 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 4, entry 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 5, entry 0
+EvtHeaderCnv        DEBUG TObjectToDataObject
+EvtHeaderCnv        DEBUG TObjectToDataObject eventid = 0  -9989  0x63637573
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+OfflineEventLoo...   INFO The runNumber of current event is  -9989
+OfflineEventLoo...   INFO fireIncident of begin run
+VertexDbSvc         DEBUG handle: NewRun
+VertexDbSvc         DEBUG NewRun
+VertexDbSvc          INFO This data is the MC sample with the Run Number: -9989
+Using the SftVer and ParVer (7.0.8, 1) for run 9989. 
+VertexDbSvc          INFO Successfully fetch the vertex information for run: -9989
+MagneticFieldSvc    DEBUG handle: NewRun
+MagneticFieldSvc    DEBUG Begin New Runcc
+MagneticFieldSvc     INFO SSM current: 3368.96 SCQL current: 349.371 SCQR current: 349.218 in Run 9989
+MagneticFieldSvc     INFO beamEnergy is:1.54691 BER_PRB:1.54684 in Run 9989
+MagneticFieldSvc     INFO Select field map: /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/MagneticField/MagneticField-00-02-04/dat/2008-05-27BESIII-field-Mode2.dat
+MagneticFieldSvc     INFO Select field map: /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/MagneticField/MagneticField-00-02-04/dat/2008-05-27BESIII-field-Mode3.dat
+MagneticFieldSvc     INFO Select field map: /cvmfs/bes3.ihep.ac.cn/bes3sw/Boss/7.0.8/MagneticField/MagneticField-00-02-04/dat/TEMap5cm.dat
+EmcShEnCalibSvc     DEBUG handle: NewRun
+EmcShEnCalibSvc     DEBUG NewRun
+EmcShEnCalibSvc     DEBUG handle: Run in handle is: 9989
+-------------in EmcShEnCalibSvc in the following-----------
+handle: Run in handle is: 9989
+Run in getEmcShEnCalibSvcInfo() is: -9989
+This data is the MC sample with the Run Number: -9989
+stmt=select RunFrom,RunTo,SftVer,ParVer from CalVtxLumVer where BossRelease = '7.0.8' and RunFrom <= 9989 and RunTo >= 9989 and DataType='EmcShEnCalib' 
+EmcShEnCalib runfrm,runto in getSftParVer is:8093::::80000
+stmt=select RunFrom,RunTo,SftVer,ParVer from CalVtxLumVer where BossRelease = '7.0.8' and RunFrom <= 9989 and RunTo >= 9989 and DataType='EmcShEnCalib' 	7.0.6	1
+BossReleaseVer=7.0.8	EmcShEnCalibBossVer=7.0.6
+m_Pi0CalibFile is:/cvmfs/bes3.ihep.ac.cn/CalibConst/emc/ShEnCalib/7.0.6/c3ptof2009Jpsi.txt
+m_SingleGammaCalibFile is:/cvmfs/bes3.ihep.ac.cn/CalibConst/emc/ShEnCalib/7.0.6/evsetTofCorFunctionPar2009Jpsi.txt
+m_RunFrom is:8093
+m_RunTo is:24896
+Successfully fetch EmcShEnCalibSvc information for run: 9989
+////////// read parameters from EmcShEnCalibConst database/////////////
+in handle of EmcShEnCalibSvc  getPi0CalibFile()= /cvmfs/bes3.ihep.ac.cn/CalibConst/emc/ShEnCalib/7.0.6/c3ptof2009Jpsi.txt
+getSingleGammaCalibFile()= /cvmfs/bes3.ihep.ac.cn/CalibConst/emc/ShEnCalib/7.0.6/evsetTofCorFunctionPar2009Jpsi.txt
+RecMakerAlg          INFO in execute()
+RecMakerAlg          INFO event: 0  run: -9989
+RecTrackCnv         DEBUG RecTrackCnv::initialize
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 3000
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RecTrackCnv         DEBUG TObjectToDataObject
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134492 *****  /Event/Recon/MucRecHitCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134422 *****  /Event/Recon/RecBTofCalHitCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134432 *****  /Event/Recon/RecETofCalHitCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134302 *****  /Event/Recon/RecEmcClusterCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134292 *****  /Event/Recon/RecEmcHitCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134282 *****  /Event/Recon/RecEmcShowerCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134682 *****  /Event/Recon/RecEsTimeCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134582 *****  /Event/Recon/RecExtTrackCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134212 *****  /Event/Recon/RecMdcDedxCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134217 *****  /Event/Recon/RecMdcDedxHitCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134192 *****  /Event/Recon/RecMdcHitCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134232 *****  /Event/Recon/RecMdcKalHelixSegCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134222 *****  /Event/Recon/RecMdcKalTrackCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134182 *****  /Event/Recon/RecMdcTrackCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134482 *****  /Event/Recon/RecMucTrackCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134402 *****  /Event/Recon/RecTofTrackCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  134882 *****  /Event/Recon/RecZddChannelCol
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 134182
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_recMdcTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG Could not find branch xxm_recMdcTrackColxx
+RecMakerAlg          INFO Could not find RecMdcTrackCol
+DstCnv              DEBUG DstCnv::initialize
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 1400
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+DstCnv              DEBUG TObjectToDataObject
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  132512 *****  /Event/Dst/DstEmcShowerCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  132532 *****  /Event/Dst/DstExtTrackCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  132492 *****  /Event/Dst/DstMdcDedxCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  132487 *****  /Event/Dst/DstMdcKalTrackCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  132482 *****  /Event/Dst/DstMdcTrackCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  132522 *****  /Event/Dst/DstMucTrackCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  132502 *****  /Event/Dst/DstTofTrackCol
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 132482
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_mdcTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 6, entry 0
+MdcTrackCnv         DEBUG MdcTrackCnv::TObjectToDataObject
+MdcTrackCnv          INFO in MdcTrackCnv, helix[0]: -0.916617
+MdcTrackCnv          INFO in MdcTrackCnv, helix[1]: 2.45495
+MdcTrackCnv          INFO in MdcTrackCnv, helix[2]: 1.8419
+MdcTrackCnv          INFO in MdcTrackCnv, helix[3]: 0.198431
+MdcTrackCnv          INFO in MdcTrackCnv, helix[4]: -1.13848
+MdcTrackCnv          INFO in MdcTrackCnv, mdcTrackRoot.nster 19
+MdcTrackCnv          INFO  dstMdcTrack trkid: 0
+MdcTrackCnv          INFO dstMdcTrack helix: 
+    -0.916617
+      2.45495
+       1.8419
+     0.198431
+     -1.13848
+
+MdcTrackCnv          INFO  dstMdcTrack nster: 19
+MdcTrackCnv          INFO in MdcTrackCnv, helix[0]: 1.0747
+MdcTrackCnv          INFO in MdcTrackCnv, helix[1]: 5.81613
+MdcTrackCnv          INFO in MdcTrackCnv, helix[2]: -1.93119
+MdcTrackCnv          INFO in MdcTrackCnv, helix[3]: 1.37625
+MdcTrackCnv          INFO in MdcTrackCnv, helix[4]: 0.814558
+MdcTrackCnv          INFO in MdcTrackCnv, mdcTrackRoot.nster 22
+MdcTrackCnv          INFO  dstMdcTrack trkid: 1
+MdcTrackCnv          INFO dstMdcTrack helix: 
+       1.0747
+      5.81613
+     -1.93119
+      1.37625
+     0.814558
+
+MdcTrackCnv          INFO  dstMdcTrack nster: 22
+MdcTrackCnv          INFO in MdcTrackCnv, helix[0]: 1.00621
+MdcTrackCnv          INFO in MdcTrackCnv, helix[1]: 6.09209
+MdcTrackCnv          INFO in MdcTrackCnv, helix[2]: -4.86433
+MdcTrackCnv          INFO in MdcTrackCnv, helix[3]: 27.95
+MdcTrackCnv          INFO in MdcTrackCnv, helix[4]: 0.63627
+MdcTrackCnv          INFO in MdcTrackCnv, mdcTrackRoot.nster 16
+MdcTrackCnv          INFO  dstMdcTrack trkid: 2
+MdcTrackCnv          INFO dstMdcTrack helix: 
+      1.00621
+      6.09209
+     -4.86433
+        27.95
+      0.63627
+
+MdcTrackCnv          INFO  dstMdcTrack nster: 16
+MdcTrackCnv          INFO in MdcTrackCnv, helix[0]: -0.768422
+MdcTrackCnv          INFO in MdcTrackCnv, helix[1]: 2.95585
+MdcTrackCnv          INFO in MdcTrackCnv, helix[2]: 4.82753
+MdcTrackCnv          INFO in MdcTrackCnv, helix[3]: 29.7289
+MdcTrackCnv          INFO in MdcTrackCnv, helix[4]: -0.654275
+MdcTrackCnv          INFO in MdcTrackCnv, mdcTrackRoot.nster 18
+MdcTrackCnv          INFO  dstMdcTrack trkid: 3
+MdcTrackCnv          INFO dstMdcTrack helix: 
+    -0.768422
+      2.95585
+      4.82753
+      29.7289
+    -0.654275
+
+MdcTrackCnv          INFO  dstMdcTrack nster: 18
+MdcTrackCnv          INFO in MdcTrackCnv, helix[0]: -2.2954
+MdcTrackCnv          INFO in MdcTrackCnv, helix[1]: 5.28242
+MdcTrackCnv          INFO in MdcTrackCnv, helix[2]: 6.18318
+MdcTrackCnv          INFO in MdcTrackCnv, helix[3]: -0.552058
+MdcTrackCnv          INFO in MdcTrackCnv, helix[4]: 1.19864
+MdcTrackCnv          INFO in MdcTrackCnv, mdcTrackRoot.nster 14
+MdcTrackCnv          INFO  dstMdcTrack trkid: 4
+MdcTrackCnv          INFO dstMdcTrack helix: 
+      -2.2954
+      5.28242
+      6.18318
+    -0.552058
+      1.19864
+
+MdcTrackCnv          INFO  dstMdcTrack nster: 14
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+RecMakerAlg          INFO  Mdc Track ID = 0 Mdc Track Nster = 19
+RecMakerAlg          INFO  Mdc Track ID = 1 Mdc Track Nster = 22
+RecMakerAlg          INFO  Mdc Track ID = 2 Mdc Track Nster = 16
+RecMakerAlg          INFO  Mdc Track ID = 3 Mdc Track Nster = 18
+RecMakerAlg          INFO  Mdc Track ID = 4 Mdc Track Nster = 14
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 134222
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_recMdcKalTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG Could not find branch xxm_recMdcKalTrackColxx
+RecMakerAlg          INFO Could not find RecMdcKalTrackCol
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 132487
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_mdcKalTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 7, entry 0
+MdcKalTrackCnv      DEBUG MdcKalTrackCnv::TObjectToDataObject
+MdcKalTrackCnv      DEBUG T to DST, poca: (0,0,0)
+MdcKalTrackCnv      DEBUG T to DST, zhelix: 
+    -0.914058
+      2.45452
+      1.84102
+     0.190146
+     -1.13876
+
+MdcKalTrackCnv      DEBUG T to DST, zerror: 
+  0.000363372   5.17633e-05  -4.85976e-05   0.000286995  -2.73051e-06 
+  5.17633e-05   1.05928e-05  -3.36414e-06   2.06717e-05   1.47523e-07 
+ -4.85976e-05  -3.36414e-06   5.80196e-05   2.08058e-05  -2.08848e-05 
+  0.000286995   2.06717e-05   2.08058e-05      0.022759  -0.000525958 
+ -2.73051e-06   1.47523e-07  -2.08848e-05  -0.000525958   3.26186e-05 
+
+MdcKalTrackCnv      DEBUG T to DST, poca: (0,0,0)
+MdcKalTrackCnv      DEBUG T to DST, zhelix: 
+      1.07287
+       5.8165
+     -1.93064
+      1.36241
+     0.813976
+
+MdcKalTrackCnv      DEBUG T to DST, zerror: 
+  0.000313395   4.72389e-05  -3.89573e-05   0.000408811  -5.90331e-06 
+  4.72389e-05   9.94753e-06  -2.80648e-06   2.39591e-05  -6.42327e-08 
+ -3.89573e-05  -2.80648e-06   4.91523e-05  -3.37057e-05  -1.38722e-05 
+  0.000408811   2.39591e-05  -3.37057e-05     0.0155637  -0.000368657 
+ -5.90331e-06  -6.42327e-08  -1.38722e-05  -0.000368657   2.29361e-05 
+
+MdcKalTrackCnv      DEBUG T to DST, poca: (0,0,0)
+MdcKalTrackCnv      DEBUG T to DST, zhelix: 
+    -0.744073
+      2.95486
+       4.8154
+      29.9854
+    -0.659772
+
+MdcKalTrackCnv      DEBUG T to DST, zerror: 
+   0.00217284   0.000223716  -0.000399667    0.00701694   -0.00011329 
+  0.000223716   2.96079e-05  -2.76828e-05   0.000318413  -3.54051e-06 
+ -0.000399667  -2.76828e-05   0.000485759    -0.0013611  -5.85789e-05 
+   0.00701694   0.000318413    -0.0013611     0.0943588    -0.0019328 
+  -0.00011329  -3.54051e-06  -5.85789e-05    -0.0019328   7.19215e-05 
+
+MdcKalTrackCnv      DEBUG T to DST, poca: (0,0,0)
+MdcKalTrackCnv      DEBUG T to DST, zhelix: 
+     0.958141
+      6.09512
+     -4.84742
+      27.1457
+     0.649007
+
+MdcKalTrackCnv      DEBUG T to DST, zerror: 
+   0.00176948   0.000203514  -0.000212265    0.00522646  -8.76512e-05 
+  0.000203514   2.87481e-05  -1.69646e-05   0.000231214  -2.29298e-06 
+ -0.000212265  -1.69646e-05   0.000377784  -0.000608586  -6.89475e-05 
+   0.00522646   0.000231214  -0.000608586     0.0668076   -0.00147367 
+ -8.76512e-05  -2.29298e-06  -6.89475e-05   -0.00147367   6.43533e-05 
+
+MdcKalTrackCnv      DEBUG T to DST, poca: (0,0,0)
+MdcKalTrackCnv      DEBUG T to DST, zhelix: 
+     -2.31545
+      5.28041
+      6.18131
+    -0.605267
+      1.20113
+
+MdcKalTrackCnv      DEBUG T to DST, zerror: 
+   0.00388309   0.000687316  -0.000506745    0.00539628  -0.000169094 
+  0.000687316   0.000181402  -7.30337e-05  -0.000111883  -2.12286e-05 
+ -0.000506745  -7.30337e-05    0.00493612   -0.00689392    0.00149789 
+   0.00539628  -0.000111883   -0.00689392      0.107935   -0.00338997 
+ -0.000169094  -2.12286e-05    0.00149789   -0.00338997   0.000512846 
+
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+RecMakerAlg          INFO  MdcKalTrack ID = 0 MdcKalTrack Nster = 0 MdcKalTrack poca = (0.706665,-0.579764,0.190146)
+RecMakerAlg          INFO  MdcKalTrack ID = 1 MdcKalTrack Nster = 0 MdcKalTrack poca = (0.958142,-0.482711,1.36241)
+RecMakerAlg          INFO  MdcKalTrack ID = 2 MdcKalTrack Nster = 0 MdcKalTrack poca = (0.731138,-0.138133,29.9854)
+RecMakerAlg          INFO  MdcKalTrack ID = 3 MdcKalTrack Nster = 0 MdcKalTrack poca = (0.941246,-0.179137,27.1457)
+RecMakerAlg          INFO  MdcKalTrack ID = 4 MdcKalTrack Nster = 0 MdcKalTrack poca = (-1.24562,1.95185,-0.605267)
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 134212
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_recMdcDedxCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG Could not find branch xxm_recMdcDedxColxx
+RecMakerAlg          INFO Could not find RecMdcDedxCol
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 132492
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_mdcDedxCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 8, entry 0
+MdcDedxCnv          DEBUG MdcDedxCnv::TObjectToDataObject
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+RecMakerAlg          INFO  MdcDedx ID = 0 MdcDedx 
+RecMakerAlg          INFO  MdcDedx ID = 1 MdcDedx 
+RecMakerAlg          INFO  MdcDedx ID = 2 MdcDedx 
+RecMakerAlg          INFO  MdcDedx ID = 3 MdcDedx 
+RecMakerAlg          INFO  MdcDedx ID = 4 MdcDedx 
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 134582
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_recExtTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG Could not find branch xxm_recExtTrackColxx
+RecMakerAlg          INFO Could not find RecExtTrackCol
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 132532
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_extTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 9, entry 0
+ExtTrackCnv         DEBUG ExtTrackCnv::TObjectToDataObject
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+RecMakerAlg          INFO  ExtTrack ID = 0
+RecMakerAlg          INFO  ExtTrack ID = 1
+RecMakerAlg          INFO  ExtTrack ID = 2
+RecMakerAlg          INFO  ExtTrack ID = 3
+RecMakerAlg          INFO  ExtTrack ID = 4
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 134402
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_recTofTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG Could not find branch xxm_recTofTrackColxx
+RecMakerAlg          INFO Could not find TofTrackCol
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 132502
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_tofTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 10, entry 0
+TofTrackCnv         DEBUG TofTrackCnv::TObjectToDataObject
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 0 Tof Counter ID = 59 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 0 Tof Counter ID = 59 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 0 Tof Counter ID = 59 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 0 Tof Counter ID = 148 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 0 Tof Counter ID = 148 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 0 Tof Counter ID = 148 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 0 Tof Counter ID = 59 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 1 Tof Counter ID = 12 Quality = 5
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 1 Tof Counter ID = 12 Quality = 5
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 1 Tof Counter ID = 12 Quality = 5
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 3 Tof Counter ID = 72 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 3 Tof Counter ID = 72 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 3 Tof Counter ID = 72 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 3 Tof Counter ID = 161 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 3 Tof Counter ID = 161 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 3 Tof Counter ID = 161 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 3 Tof Counter ID = 72 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 2 Tof Counter ID = 10 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 2 Tof Counter ID = 10 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 2 Tof Counter ID = 10 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 2 Tof Counter ID = 98 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 2 Tof Counter ID = 98 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 2 Tof Counter ID = 98 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 2 Tof Counter ID = 10 Quality = 1
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 4 Tof Counter ID = 19 Quality = 2
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 4 Tof Counter ID = 19 Quality = 2
+RecMakerAlg          INFO Tof Track ID = -1 Track ID = 4 Tof Counter ID = 19 Quality = 2
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 134282
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_recEmcShowerCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG Could not find branch xxm_recEmcShowerColxx
+RecMakerAlg          INFO Could not find RecEmcShowerCol
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 132512
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_emcTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 11, entry 0
+EmcTrackCnv         DEBUG EmcTrackCnv::TObjectToDataObject
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+RecMakerAlg          INFO  EmcShower ID = 0 EmcShower energy = 0.129248
+RecMakerAlg          INFO  EmcShower ID = 1 EmcShower energy = 0.120941
+RecMakerAlg          INFO  EmcShower ID = 2 EmcShower energy = 0.113172
+RecMakerAlg          INFO  EmcShower ID = 3 EmcShower energy = 0.100013
+RecMakerAlg          INFO  EmcShower ID = 4 EmcShower energy = 0.0850573
+RecMakerAlg          INFO  EmcShower ID = 5 EmcShower energy = 0.0764024
+RecMakerAlg          INFO  EmcShower ID = 6 EmcShower energy = 0.0631417
+RecMakerAlg          INFO  EmcShower ID = 7 EmcShower energy = 0.0389822
+RecMakerAlg          INFO  EmcShower ID = 8 EmcShower energy = 0.0338845
+RecMakerAlg          INFO  EmcShower ID = 9 EmcShower energy = 0.0183745
+RecMakerAlg          INFO  EmcShower ID = 10 EmcShower energy = 0.0143615
+RecMakerAlg          INFO  EmcShower ID = 11 EmcShower energy = 0.0122413
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 134482
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_recMucTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootCnvSvc          DEBUG Could not find branch xxm_recMucTrackColxx
+RecMakerAlg          INFO Could not find RecMucTrackCol
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 132522
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_mucTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 12, entry 0
+MucTrackCnv         DEBUG MucTrackCnv::TObjectToDataObject
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+RecMakerAlg          INFO  MucTrack ID = 0
+RecMakerAlg          INFO  MucTrack ID = 1
+AbsCor               INFO in execute()
+current run=-9989
+in AbsCor  open getPi0CalibFile()= /cvmfs/bes3.ihep.ac.cn/CalibConst/emc/ShEnCalib/7.0.6/c3ptof2009Jpsi.txt
+open getSingleGammaCalibFile()= /cvmfs/bes3.ihep.ac.cn/CalibConst/emc/ShEnCalib/7.0.6/evsetTofCorFunctionPar2009Jpsi.txt
+getRunFrom()=8093
+getRunTo()=24896
+-----------read parameter file-------
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 4000
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+EvtRecCnv           DEBUG EvtRecCnv::TObjectToDataObject
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  135192 *****  /Event/EvtRec/EvtRecDTagCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  135212 *****  /Event/EvtRec/EvtRecEtaToGGCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  4010 *****  /Event/EvtRec/EvtRecEvent
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  135202 *****  /Event/EvtRec/EvtRecPi0Col
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  4020 *****  /Event/EvtRec/EvtRecPrimaryVertex
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  135172 *****  /Event/EvtRec/EvtRecTrackCol
+EventCnvSvc         DEBUG RootCnvSvc::updateService  *****  135182 *****  /Event/EvtRec/EvtRecVeeVertexCol
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 4010
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_evtRecEvent
+RootCnvSvc           INFO RootInterface:;getTree
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 13, entry 0
+EvtRecEventCnv      DEBUG EvtRecEventCnv::TObjectToDataObject
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+RootEventBaseCnv    DEBUG RootEventBaseCnv::createObj with clid 135172
+RootCnvSvc          DEBUG RootInterface::setbranch address, treename: Event, branch m_evtRecTrackCol
+RootCnvSvc           INFO RootInterface:;getTree
+RootEventBaseCnv     INFO  event id = 0
+RootEventBaseCnv     INFO  2nd  method set event as : 0
+RootCnvSvc          DEBUG RootInterface::getBranchEntry: , branch nr 14, entry 0
+EvtRecTrackCnv      DEBUG EvtRecTrackCnv::TObjectToDataObject
+EventCnvSvc         DEBUG RootCnvSvc::updateServiceState
+execute()
+SigmaSigmabar        INFO in execute()
+SigmaSigmabar       DEBUG run, evtnum = -9989 , 0
+event 0
+SigmaSigmabar       DEBUG ncharg, nneu, tottks = 5 , 8 , 13
+Hello SigmaSigmabar world!
+RCWNTupleCnv        DEBUG adding TBranch  vx0/D  at 0x51123e0
+RCWNTupleCnv        DEBUG adding TBranch  vy0/D  at 0x51123e8
+RCWNTupleCnv        DEBUG adding TBranch  vz0/D  at 0x51123f0
+RCWNTupleCnv        DEBUG adding TBranch  vr0/D  at 0x51123f8
+RCWNTupleCnv        DEBUG adding TBranch  rvxy0/D  at 0x5112400
+RCWNTupleCnv        DEBUG adding TBranch  rvz0/D  at 0x5112408
+RCWNTupleCnv        DEBUG adding TBranch  rvphi0/D  at 0x5112410
+RCWNTupleCnv         INFO Booked TTree with ID: vxyz "ks N-Tuple example" in directory rhopi_ana.root:/
+SigmaSigmabar       DEBUG ngood, totcharge = 2 , 0
+RCWNTupleCnv        DEBUG adding TBranch  dthe/D  at 0x515ff10
+RCWNTupleCnv        DEBUG adding TBranch  dphi/D  at 0x515ff18
+RCWNTupleCnv        DEBUG adding TBranch  dang/D  at 0x515ff20
+RCWNTupleCnv        DEBUG adding TBranch  eraw/D  at 0x515ff28
+RCWNTupleCnv         INFO Booked TTree with ID: photon "ks N-Tuple example" in directory rhopi_ana.root:/
+SigmaSigmabar       DEBUG num Good Photon 2 , 8
+RCWNTupleCnv        DEBUG adding TBranch  ptrk/D  at 0x51891e0
+RCWNTupleCnv        DEBUG adding TBranch  chie/D  at 0x51891e8
+RCWNTupleCnv        DEBUG adding TBranch  chimu/D  at 0x51891f0
+RCWNTupleCnv        DEBUG adding TBranch  chipi/D  at 0x51891f8
+RCWNTupleCnv        DEBUG adding TBranch  chik/D  at 0x5189200
+RCWNTupleCnv        DEBUG adding TBranch  chip/D  at 0x5189208
+RCWNTupleCnv        DEBUG adding TBranch  probPH/D  at 0x5189210
+RCWNTupleCnv        DEBUG adding TBranch  normPH/D  at 0x5189218
+RCWNTupleCnv        DEBUG adding TBranch  ghit/D  at 0x5189220
+RCWNTupleCnv        DEBUG adding TBranch  thit/D  at 0x5189228
+RCWNTupleCnv         INFO Booked TTree with ID: dedx "ks N-Tuple example" in directory rhopi_ana.root:/
+RCWNTupleCnv        DEBUG adding TBranch  ptrk/D  at 0x51e3e60
+RCWNTupleCnv        DEBUG adding TBranch  cntr/D  at 0x51e3e68
+RCWNTupleCnv        DEBUG adding TBranch  ph/D  at 0x51e3e70
+RCWNTupleCnv        DEBUG adding TBranch  zhit/D  at 0x51e3e78
+RCWNTupleCnv        DEBUG adding TBranch  qual/D  at 0x51e3e80
+RCWNTupleCnv        DEBUG adding TBranch  te/D  at 0x51e3e88
+RCWNTupleCnv        DEBUG adding TBranch  tmu/D  at 0x51e3e90
+RCWNTupleCnv        DEBUG adding TBranch  tpi/D  at 0x51e3e98
+RCWNTupleCnv        DEBUG adding TBranch  tk/D  at 0x51e3ea0
+RCWNTupleCnv        DEBUG adding TBranch  tp/D  at 0x51e3ea8
+RCWNTupleCnv         INFO Booked TTree with ID: tof1 "ks N-Tuple example" in directory rhopi_ana.root:/
+RCWNTupleCnv        DEBUG adding TBranch  ptrk/D  at 0x523e7e0
+RCWNTupleCnv        DEBUG adding TBranch  cntr/D  at 0x523e7e8
+RCWNTupleCnv        DEBUG adding TBranch  ph/D  at 0x523e7f0
+RCWNTupleCnv        DEBUG adding TBranch  zhit/D  at 0x523e7f8
+RCWNTupleCnv        DEBUG adding TBranch  qual/D  at 0x523e800
+RCWNTupleCnv        DEBUG adding TBranch  te/D  at 0x523e808
+RCWNTupleCnv        DEBUG adding TBranch  tmu/D  at 0x523e810
+RCWNTupleCnv        DEBUG adding TBranch  tpi/D  at 0x523e818
+RCWNTupleCnv        DEBUG adding TBranch  tk/D  at 0x523e820
+RCWNTupleCnv        DEBUG adding TBranch  tp/D  at 0x523e828
+RCWNTupleCnv         INFO Booked TTree with ID: tof2 "ks N-Tuple example" in directory rhopi_ana.root:/
+before pid
+ServiceManager      DEBUG Stopping service OfflineEventLoopMgr
+ServiceManager      DEBUG Stopping service DataInfoSvc
+ServiceManager      DEBUG Stopping service HistogramDataSvc
+ServiceManager      DEBUG Stopping service HistogramPersistencySvc
+ServiceManager      DEBUG Stopping service RootHistSvc
+ServiceManager      DEBUG Stopping service NTupleSvc
+ServiceManager      DEBUG Stopping service TagFilterSvc
+ServiceManager      DEBUG Stopping service EventDataSvc
+ServiceManager      DEBUG Stopping service AppMgrRunable
+ServiceManager      DEBUG Stopping service EmcShEnCalibSvc
+ServiceManager      DEBUG Stopping service EmcRecGeoSvc
+ServiceManager      DEBUG Stopping service MagneticFieldSvc
+ServiceManager      DEBUG Stopping service VertexDbSvc
+ServiceManager      DEBUG Stopping service DatabaseSvc
+ServiceManager      DEBUG Stopping service EventCnvSvc
+ServiceManager      DEBUG Stopping service EventSelector
+ServiceManager      DEBUG Stopping service EventPersistencySvc
+ServiceManager      DEBUG Stopping service IncidentSvc
+ApplicationMgr       INFO Application Manager Stopped successfully
+ServiceManager      DEBUG Finalizing service OfflineEventLoopMgr
+RecMakerAlg          INFO in finalize()
+AbsCor               INFO in finalize()
+total number:         1
+nGood==2, nCharge==0: 1
+nGam>=2:              1
+Pass Pid:             0
+Pass 4C:              0
+Pass 5C:              0
+J/psi->rho0 pi0:      0
+SigmaSigmabar        INFO in finalize()
+IncidentSvc         DEBUG Removing [AbortEvent] listener '<unknown>'
+RootHistSvc       WARNING no ROOT output file name, Histograms cannot be persistified
+OfflineEventLoo...   INFO Histograms converted successfully according to request.
+ServiceManager      DEBUG Finalizing service DataInfoSvc
+DataInfoSvc          INFO DataInfoSvc::finalize()
+ServiceManager      DEBUG Finalizing service HistogramDataSvc
+ServiceManager      DEBUG Finalizing service HistogramPersistencySvc
+ServiceManager      DEBUG Finalizing service RootHistSvc
+RootHistSvc         DEBUG RootHistCnv::PersSvc::finalize()
+ServiceManager      DEBUG Finalizing service NTupleSvc
+RNTupleCnv        WARNING empty ntuple: /NTUPLES/FILE1/pid
+RCWNTupleCnv        DEBUG adding TBranch  ptrk/D  at 0x40cd8b0
+RCWNTupleCnv        DEBUG adding TBranch  cost/D  at 0x40cd8b8
+RCWNTupleCnv        DEBUG adding TBranch  dedx/D  at 0x40cd8c0
+RCWNTupleCnv        DEBUG adding TBranch  tof1/D  at 0x40cd8c8
+RCWNTupleCnv        DEBUG adding TBranch  tof2/D  at 0x40cd8d0
+RCWNTupleCnv        DEBUG adding TBranch  prob/D  at 0x40cd8d8
+RCWNTupleCnv         INFO Booked TTree with ID: pid "ks N-Tuple example" in directory rhopi_ana.root:/
+RNTupleCnv        WARNING empty ntuple: /NTUPLES/FILE1/tofe
+RCWNTupleCnv        DEBUG adding TBranch  ptrk/D  at 0x52da730
+RCWNTupleCnv        DEBUG adding TBranch  cntr/D  at 0x52da738
+RCWNTupleCnv        DEBUG adding TBranch  ph/D  at 0x52da740
+RCWNTupleCnv        DEBUG adding TBranch  rhit/D  at 0x52da748
+RCWNTupleCnv        DEBUG adding TBranch  qual/D  at 0x52da750
+RCWNTupleCnv        DEBUG adding TBranch  te/D  at 0x52da758
+RCWNTupleCnv        DEBUG adding TBranch  tmu/D  at 0x52da760
+RCWNTupleCnv        DEBUG adding TBranch  tpi/D  at 0x52da768
+RCWNTupleCnv        DEBUG adding TBranch  tk/D  at 0x52da770
+RCWNTupleCnv        DEBUG adding TBranch  tp/D  at 0x52da778
+RCWNTupleCnv         INFO Booked TTree with ID: tofe "ks N-Tuple example" in directory rhopi_ana.root:/
+RNTupleCnv        WARNING empty ntuple: /NTUPLES/FILE1/geff
+RCWNTupleCnv        DEBUG adding TBranch  fcos/D  at 0x5345c90
+RCWNTupleCnv        DEBUG adding TBranch  elow/D  at 0x5345c98
+RCWNTupleCnv         INFO Booked TTree with ID: geff "ks N-Tuple example" in directory rhopi_ana.root:/
+RNTupleCnv        WARNING empty ntuple: /NTUPLES/FILE1/fit5c
+RCWNTupleCnv        DEBUG adding TBranch  chi2/D  at 0x535e820
+RCWNTupleCnv        DEBUG adding TBranch  mrh0/D  at 0x535e828
+RCWNTupleCnv        DEBUG adding TBranch  mrhp/D  at 0x535e830
+RCWNTupleCnv        DEBUG adding TBranch  mrhm/D  at 0x535e838
+RCWNTupleCnv         INFO Booked TTree with ID: fit5c "ks N-Tuple example" in directory rhopi_ana.root:/
+RNTupleCnv        WARNING empty ntuple: /NTUPLES/FILE1/fit4c
+RCWNTupleCnv        DEBUG adding TBranch  chi2/D  at 0x4ea7970
+RCWNTupleCnv        DEBUG adding TBranch  mpi0/D  at 0x4ea7978
+RCWNTupleCnv        DEBUG adding TBranch  mpip/D  at 0x4ea7980
+RCWNTupleCnv        DEBUG adding TBranch  mpim/D  at 0x4ea7988
+RCWNTupleCnv        DEBUG adding TBranch  mrho0/D  at 0x4ea7990
+RCWNTupleCnv         INFO Booked TTree with ID: fit4c "ks N-Tuple example" in directory rhopi_ana.root:/
+RNTupleCnv        WARNING empty ntuple: /NTUPLES/FILE1/etot
+RCWNTupleCnv        DEBUG adding TBranch  m2gg/D  at 0x52db340
+RCWNTupleCnv        DEBUG adding TBranch  etot/D  at 0x52db348
+RCWNTupleCnv         INFO Booked TTree with ID: etot "ks N-Tuple example" in directory rhopi_ana.root:/
+RFileCnv             INFO dumping contents of /NTUPLES/FILE1
+TFile: name=rhopi_ana.root, title=Gaudi Trees, option=CREATE
+******************************************************************************
+*Tree    :vxyz      : ks N-Tuple example                                     *
+*Entries :        5 : Total =            4558 bytes  File  Size =       1507 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :vx0       : vx0/D                                                  *
+*Entries :        5 : Total  Size=        592 bytes  File Size  =        110 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :vy0       : vy0/D                                                  *
+*Entries :        5 : Total  Size=        592 bytes  File Size  =        110 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    2 :vz0       : vz0/D                                                  *
+*Entries :        5 : Total  Size=        592 bytes  File Size  =        110 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    3 :vr0       : vr0/D                                                  *
+*Entries :        5 : Total  Size=        592 bytes  File Size  =        110 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    4 :rvxy0     : rvxy0/D                                                *
+*Entries :        5 : Total  Size=        602 bytes  File Size  =        112 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    5 :rvz0      : rvz0/D                                                 *
+*Entries :        5 : Total  Size=        597 bytes  File Size  =        111 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    6 :rvphi0    : rvphi0/D                                               *
+*Entries :        5 : Total  Size=        607 bytes  File Size  =        113 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+******************************************************************************
+*Tree    :photon    : ks N-Tuple example                                     *
+*Entries :        8 : Total =            2865 bytes  File  Size =       1053 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :dthe      : dthe/D                                                 *
+*Entries :        8 : Total  Size=        623 bytes  File Size  =        137 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :dphi      : dphi/D                                                 *
+*Entries :        8 : Total  Size=        623 bytes  File Size  =        137 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    2 :dang      : dang/D                                                 *
+*Entries :        8 : Total  Size=        623 bytes  File Size  =        137 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    3 :eraw      : eraw/D                                                 *
+*Entries :        8 : Total  Size=        623 bytes  File Size  =        137 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+******************************************************************************
+*Tree    :dedx      : ks N-Tuple example                                     *
+*Entries :        2 : Total =            6159 bytes  File  Size =       1687 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :ptrk      : ptrk/D                                                 *
+*Entries :        2 : Total  Size=        573 bytes  File Size  =         87 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :chie      : chie/D                                                 *
+*Entries :        2 : Total  Size=        573 bytes  File Size  =         87 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    2 :chimu     : chimu/D                                                *
+*Entries :        2 : Total  Size=        578 bytes  File Size  =         88 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    3 :chipi     : chipi/D                                                *
+*Entries :        2 : Total  Size=        578 bytes  File Size  =         88 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    4 :chik      : chik/D                                                 *
+*Entries :        2 : Total  Size=        573 bytes  File Size  =         87 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    5 :chip      : chip/D                                                 *
+*Entries :        2 : Total  Size=        573 bytes  File Size  =         87 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    6 :probPH    : probPH/D                                               *
+*Entries :        2 : Total  Size=        583 bytes  File Size  =         89 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    7 :normPH    : normPH/D                                               *
+*Entries :        2 : Total  Size=        583 bytes  File Size  =         89 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    8 :ghit      : ghit/D                                                 *
+*Entries :        2 : Total  Size=        573 bytes  File Size  =         87 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    9 :thit      : thit/D                                                 *
+*Entries :        2 : Total  Size=        573 bytes  File Size  =         87 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+******************************************************************************
+*Tree    :tof1      : ks N-Tuple example                                     *
+*Entries :        2 : Total =            6079 bytes  File  Size =       1682 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :ptrk      : ptrk/D                                                 *
+*Entries :        2 : Total  Size=        573 bytes  File Size  =         87 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :cntr      : cntr/D                                                 *
+*Entries :        2 : Total  Size=        573 bytes  File Size  =         87 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    2 :ph        : ph/D                                                   *
+*Entries :        2 : Total  Size=        563 bytes  File Size  =         85 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    3 :zhit      : zhit/D                                                 *
+*Entries :        2 : Total  Size=        573 bytes  File Size  =         87 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    4 :qual      : qual/D                                                 *
+*Entries :        2 : Total  Size=        573 bytes  File Size  =         87 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    5 :te        : te/D                                                   *
+*Entries :        2 : Total  Size=        563 bytes  File Size  =         85 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    6 :tmu       : tmu/D                                                  *
+*Entries :        2 : Total  Size=        568 bytes  File Size  =         86 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    7 :tpi       : tpi/D                                                  *
+*Entries :        2 : Total  Size=        568 bytes  File Size  =         86 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    8 :tk        : tk/D                                                   *
+*Entries :        2 : Total  Size=        563 bytes  File Size  =         85 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    9 :tp        : tp/D                                                   *
+*Entries :        2 : Total  Size=        563 bytes  File Size  =         85 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+******************************************************************************
+*Tree    :tof2      : ks N-Tuple example                                     *
+*Entries :        1 : Total =            5999 bytes  File  Size =       1645 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :ptrk      : ptrk/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :cntr      : cntr/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    2 :ph        : ph/D                                                   *
+*Entries :        1 : Total  Size=        555 bytes  File Size  =         77 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    3 :zhit      : zhit/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    4 :qual      : qual/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    5 :te        : te/D                                                   *
+*Entries :        1 : Total  Size=        555 bytes  File Size  =         77 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    6 :tmu       : tmu/D                                                  *
+*Entries :        1 : Total  Size=        560 bytes  File Size  =         78 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    7 :tpi       : tpi/D                                                  *
+*Entries :        1 : Total  Size=        560 bytes  File Size  =         78 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    8 :tk        : tk/D                                                   *
+*Entries :        1 : Total  Size=        555 bytes  File Size  =         77 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    9 :tp        : tp/D                                                   *
+*Entries :        1 : Total  Size=        555 bytes  File Size  =         77 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+******************************************************************************
+*Tree    :pid       : ks N-Tuple example                                     *
+*Entries :        1 : Total =            3761 bytes  File  Size =       1009 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :ptrk      : ptrk/D                                                 *
+*Entries :        1 : Total  Size=        564 bytes  File Size  =         78 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :cost      : cost/D                                                 *
+*Entries :        1 : Total  Size=        564 bytes  File Size  =         78 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    2 :dedx      : dedx/D                                                 *
+*Entries :        1 : Total  Size=        564 bytes  File Size  =         78 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    3 :tof1      : tof1/D                                                 *
+*Entries :        1 : Total  Size=        564 bytes  File Size  =         78 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    4 :tof2      : tof2/D                                                 *
+*Entries :        1 : Total  Size=        564 bytes  File Size  =         78 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    5 :prob      : prob/D                                                 *
+*Entries :        1 : Total  Size=        564 bytes  File Size  =         78 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+******************************************************************************
+*Tree    :tofe      : ks N-Tuple example                                     *
+*Entries :        1 : Total =            5999 bytes  File  Size =       1641 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :ptrk      : ptrk/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :cntr      : cntr/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    2 :ph        : ph/D                                                   *
+*Entries :        1 : Total  Size=        555 bytes  File Size  =         77 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    3 :rhit      : rhit/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    4 :qual      : qual/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    5 :te        : te/D                                                   *
+*Entries :        1 : Total  Size=        555 bytes  File Size  =         77 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    6 :tmu       : tmu/D                                                  *
+*Entries :        1 : Total  Size=        560 bytes  File Size  =         78 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    7 :tpi       : tpi/D                                                  *
+*Entries :        1 : Total  Size=        560 bytes  File Size  =         78 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    8 :tk        : tk/D                                                   *
+*Entries :        1 : Total  Size=        555 bytes  File Size  =         77 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    9 :tp        : tp/D                                                   *
+*Entries :        1 : Total  Size=        555 bytes  File Size  =         77 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+******************************************************************************
+*Tree    :geff      : ks N-Tuple example                                     *
+*Entries :        1 : Total =            1489 bytes  File  Size =        593 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :fcos      : fcos/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :elow      : elow/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+******************************************************************************
+*Tree    :fit5c     : ks N-Tuple example                                     *
+*Entries :        1 : Total =            2635 bytes  File  Size =        820 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :chi2      : chi2/D                                                 *
+*Entries :        1 : Total  Size=        566 bytes  File Size  =         80 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :mrh0      : mrh0/D                                                 *
+*Entries :        1 : Total  Size=        566 bytes  File Size  =         80 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    2 :mrhp      : mrhp/D                                                 *
+*Entries :        1 : Total  Size=        566 bytes  File Size  =         80 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    3 :mrhm      : mrhm/D                                                 *
+*Entries :        1 : Total  Size=        566 bytes  File Size  =         80 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+******************************************************************************
+*Tree    :fit4c     : ks N-Tuple example                                     *
+*Entries :        1 : Total =            3211 bytes  File  Size =        996 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :chi2      : chi2/D                                                 *
+*Entries :        1 : Total  Size=        566 bytes  File Size  =         80 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :mpi0      : mpi0/D                                                 *
+*Entries :        1 : Total  Size=        566 bytes  File Size  =         80 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    2 :mpip      : mpip/D                                                 *
+*Entries :        1 : Total  Size=        566 bytes  File Size  =         80 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    3 :mpim      : mpim/D                                                 *
+*Entries :        1 : Total  Size=        566 bytes  File Size  =         80 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    4 :mrho0     : mrho0/D                                                *
+*Entries :        1 : Total  Size=        571 bytes  File Size  =         81 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+******************************************************************************
+*Tree    :etot      : ks N-Tuple example                                     *
+*Entries :        1 : Total =            1489 bytes  File  Size =        592 *
+*        :          : Tree compression factor =   1.00                       *
+******************************************************************************
+*Br    0 :m2gg      : m2gg/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+*Br    1 :etot      : etot/D                                                 *
+*Entries :        1 : Total  Size=        565 bytes  File Size  =         79 *
+*Baskets :        1 : Basket Size=      32000 bytes  Compression=   1.00     *
+*............................................................................*
+NTupleSvc            INFO NTuples saved successfully
+ServiceManager      DEBUG Finalizing service TagFilterSvc
+TagFilterSvc         INFO TagFilterSvc::finalize()
+ServiceManager      DEBUG Finalizing service EventDataSvc
+ServiceManager      DEBUG Finalizing service AppMgrRunable
+ServiceManager      DEBUG Finalizing service EmcShEnCalibSvc
+EmcShEnCalibSvc      INFO EmcShEnCalibSvc::finalize()
+ServiceManager      DEBUG Finalizing service EmcRecGeoSvc
+EmcRecGeoSvc         INFO EmcRecGeoSvc: End of Run
+ServiceManager      DEBUG Finalizing service MagneticFieldSvc
+MagneticFieldSvc     INFO Service finalized successfully
+ServiceManager      DEBUG Finalizing service VertexDbSvc
+VertexDbSvc          INFO VertexDbSvc::finalize()
+ServiceManager      DEBUG Finalizing service DatabaseSvc
+DatabaseSvc          INFO DatabaseSvc finalized successfully
+ServiceManager      DEBUG Finalizing service EventCnvSvc
+EventCnvSvc         DEBUG RootCnvSvc::finalize
+RootCnvSvc           INFO finalize() in RootInterface
+ServiceManager      DEBUG Finalizing service EventSelector
+ServiceManager      DEBUG Finalizing service EventPersistencySvc
+ServiceManager      DEBUG Finalizing service IncidentSvc
+IncidentSvc         DEBUG Incident  timing: Mean(+-rms)/Min/Max:20.2811(+-73.1081)/0.002/283.876[ms] Total:0.283936[s]
+ServiceManager      DEBUG Service reference count check:
+ServiceManager      DEBUG ---- MessageSvc (refCount = 22)
+ServiceManager      DEBUG ---- JobOptionsSvc (refCount = 2)
+ServiceManager      DEBUG ---- IncidentSvc (refCount = 6)
+ServiceManager      DEBUG ---- EventPersistencySvc (refCount = 2)
+ServiceManager      DEBUG ---- EventSelector (refCount = 47)
+ServiceManager      DEBUG ---- EventCnvSvc (refCount = 49)
+ServiceManager      DEBUG ---- DatabaseSvc (refCount = 6)
+ServiceManager      DEBUG ---- VertexDbSvc (refCount = 3)
+ServiceManager      DEBUG ---- MagneticFieldSvc (refCount = 4)
+ServiceManager      DEBUG ---- EmcRecGeoSvc (refCount = 3)
+ServiceManager      DEBUG ---- EmcShEnCalibSvc (refCount = 3)
+ServiceManager      DEBUG ---- AppMgrRunable (refCount = 3)
+ServiceManager      DEBUG ---- EventDataSvc (refCount = 62)
+ServiceManager      DEBUG ---- TagFilterSvc (refCount = 3)
+ServiceManager      DEBUG ---- NTupleSvc (refCount = 3)
+ServiceManager      DEBUG ---- RootHistSvc (refCount = 6)
+ServiceManager      DEBUG ---- HistogramPersistencySvc (refCount = 3)
+ServiceManager      DEBUG ---- HistogramDataSvc (refCount = 5)
+ServiceManager      DEBUG ---- DataInfoSvc (refCount = 3)
+ServiceManager      DEBUG ---- OfflineEventLoopMgr (refCount = 3)
+ApplicationMgr       INFO Application Manager Finalized successfully
+ApplicationMgr       INFO Application Manager Terminated successfully
+

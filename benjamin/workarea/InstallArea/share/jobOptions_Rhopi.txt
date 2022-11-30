@@ -1,0 +1,16 @@
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+ApplicationMgr.DLLs += {"SigmaSigmabarAlg"};
+ApplicationMgr.TopAlg += { "SigmaSigmabar" };
+
+SigmaSigmabar.Vr0cut = 1.0;
+SigmaSigmabar.Vz0cut = 5.0;
+
+SigmaSigmabar.EnergyThreshold = 0.04;
+SigmaSigmabar.GammaPhiCut = 20.0;
+SigmaSigmabar.GammaThetaCut = 20.0;
+SigmaSigmabar.GammaAngleCut = 20.0;
+
+SigmaSigmabar.Test4C = 1;
+SigmaSigmabar.Test5C = 1;
+SigmaSigmabar.CheckDedx = 1;				
+SigmaSigmabar.CheckTof = 1;

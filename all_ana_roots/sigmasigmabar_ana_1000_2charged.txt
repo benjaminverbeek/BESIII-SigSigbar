@@ -1,0 +1,13 @@
+execute()
+event 999
+Hello SigmaSigmabar world!
+ApplicationMgr       INFO Application Manager Stopped successfully
+total number:         1000
+nGood==2, nCharge==0: 306
+nGam>=2:              229
+Pass Pid:             3
+Pass 4C:              0
+Pass 5C:              0
+J/psi->rho0 pi0:      0
+ApplicationMgr       INFO Application Manager Finalized successfully
+ApplicationMgr       INFO Application Manager Terminated successfully

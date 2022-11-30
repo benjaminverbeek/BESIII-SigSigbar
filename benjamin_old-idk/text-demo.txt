@@ -1,0 +1,7 @@
+This is a demofile from my PC (laptop). Windows.
+
+/BV
+
+Message received.
+Command run:
+pscp text-demo.txt benjamin@202.141.163.220:/home/benjamin

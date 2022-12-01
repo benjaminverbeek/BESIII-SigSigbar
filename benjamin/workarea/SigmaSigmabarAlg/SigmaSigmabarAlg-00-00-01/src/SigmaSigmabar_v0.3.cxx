@@ -1,7 +1,7 @@
-// This is v0.2, where nCharged is changed to 4, required IP-region is made larger
+// This is v0.3, where nCharged is changed to 4, required IP-region is made larger
 // photon cut unchanged. 
 // And editing PID: it identifies pi+, pi-, p, pbar
-// Try to compile it, then run tests.
+// Seems to work. Time to check some plots. Cleaning up PID-part.
 //
 // Benjamin Verbeek, Hefei, 2022-11-29
 
@@ -399,7 +399,7 @@ StatusCode SigmaSigmabar::execute() {
     xorigin.setY(dbv[1]);
     xorigin.setZ(dbv[2]);
   }
-  cout << "Hello SigmaSigmabar world! v0.2." << endl; // edited!
+  cout << "Hello SigmaSigmabar world! v0.3." << endl; // edited!
   for(int i = 0; i < evtRecEvent->totalCharged(); i++){ // loop over charged tracks
     EvtRecTrackIterator itTrk=evtRecTrkCol->begin() + i;  // get track
     if(!(*itTrk)->isMdcTrackValid()) continue;  // check if MDC track is valid
@@ -717,7 +717,7 @@ StatusCode SigmaSigmabar::execute() {
 
     // TODO: Branch up here maybe, into proton and pion?
     // pid->identify(pid->onlyPion() | pid->onlyKaon());    // seperater Pion/Kaon // TODO: what here?
-    pid->identify(pid->onlyPion() | pid->onlyKaon() | pid->onlyProton());    // Edited 11-30
+    pid->identify(pid->onlyPion() | pid->onlyKaon() | pid->onlyProton());    // Edited 11-30, remove Kaon? Or check it also?
 
     pid->calculate();
     if(!(pid->IsPidInfoValid())) continue;
@@ -746,82 +746,40 @@ StatusCode SigmaSigmabar::execute() {
 
     RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();//After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
     RecMdcKalTrack::setPidType  (RecMdcKalTrack::pion);//PID can set to electron, muon, pion, kaon and proton;The default setting is pion
-                                                  // TODO: make branch for proton.
 
-    //  CLEANUP: Most of this can be done once outside? Only unique part is adding to vector and choosing
+    // moved out from below if-else
+    HepLorentzVector ptrk;
+    ptrk.setPx(mdcKalTrk->px());
+    ptrk.setPy(mdcKalTrk->py());
+    ptrk.setPz(mdcKalTrk->pz());
+    double p3 = ptrk.mag();
+
     // proper setE...? Will something break? Experiment.
     if((mdcKalTrk->charge() > 0) && isPion ) { // if positive & pion, its pi+
-      ipip.push_back(iGood[i]);
-      HepLorentzVector ptrk;
-      ptrk.setPx(mdcKalTrk->px());
-      ptrk.setPy(mdcKalTrk->py());
-      ptrk.setPz(mdcKalTrk->pz());
-      double p3 = ptrk.mag();
+      ipip.push_back(iGood[i]); // dep
       ptrk.setE(sqrt(p3*p3+mpi*mpi)); // This is why proton mass is needed. TODO: define in intialize
       ppip.push_back(ptrk); // 4-momentum of each pion added to vector
 
     } else if ((mdcKalTrk->charge() < 0) && isPion) {  // if not positive and is pion, its pi-
       ipim.push_back(iGood[i]);
-      HepLorentzVector ptrk;
-      ptrk.setPx(mdcKalTrk->px());
-      ptrk.setPy(mdcKalTrk->py());
-      ptrk.setPz(mdcKalTrk->pz());
-      double p3 = ptrk.mag();
       ptrk.setE(sqrt(p3*p3+mpi*mpi));
       ppim.push_back(ptrk); // 4-momentum of each pion added to vector
 
       // Added: now check for proton in the same way:
     } else if ((mdcKalTrk->charge() > 0) && !isPion) { // if positive & proton, its p+
       ip.push_back(iGood[i]);
-      HepLorentzVector ptrk;
-      ptrk.setPx(mdcKalTrk->px());
-      ptrk.setPy(mdcKalTrk->py());
-      ptrk.setPz(mdcKalTrk->pz());
-      double p3 = ptrk.mag();
       ptrk.setE(sqrt(p3*p3+mp*mp));
       pp.push_back(ptrk); // 4-momentum of each proton added to vector
 
     // and for pbar
     } else if ((mdcKalTrk->charge() < 0) && !isPion) {  // if not positive and is proton, its pbar-
       ipbar.push_back(iGood[i]);
-      HepLorentzVector ptrk;
-      ptrk.setPx(mdcKalTrk->px());
-      ptrk.setPy(mdcKalTrk->py());
-      ptrk.setPz(mdcKalTrk->pz());
-      double p3 = ptrk.mag();
       ptrk.setE(sqrt(p3*p3+mp*mp)); 
       ppbar.push_back(ptrk); // 4-momentum of each proton added to vector
     }
-
-
 //      ptrk = ptrk.boost(-0.011,0,0);//boost to cms
   }
 
-/*
-  for(int i = 0; i < nGood; i++) {//for rhopi without PID
-    EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
-    RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack(); 
-    if(mdcTrk->charge() >0) {
-      ipip.push_back(iGood[i]);
-      HepLorentzVector ptrk;
-      ptrk.setPx(mdcTrk->px());
-      ptrk.setPy(mdcTrk->py());
-      ptrk.setPz(mdcTrk->pz());
-      double p3 = ptrk.mag();
-      ptrk.setE(sqrt(p3*p3+mpi*mpi));
-      ppip.push_back(ptrk);
-    } else {
-      ipim.push_back(iGood[i]);
-      HepLorentzVector ptrk;
-      ptrk.setPx(mdcTrk->px());
-      ptrk.setPy(mdcTrk->py());
-      ptrk.setPz(mdcTrk->pz());
-      double p3 = ptrk.mag();
-      ptrk.setE(sqrt(p3*p3+mpi*mpi));
-      ppim.push_back(ptrk);
-    }
-  }// without PID
-*/
 
   int npip = ipip.size();
   int npim = ipim.size(); // Add for proton/-bar. TODO.

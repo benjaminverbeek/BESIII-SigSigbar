@@ -21,8 +21,10 @@ baseFilePath = r"C:\Users\benja\OneDrive\Documents\15c project\USTC\all_ana_root
 
 # List of files to plot
 #filenames_suffix = ["1000_invMass", "100_noIPcheck_noChargeCheck", "100_noIPcheck", "100_raw", "50_raw"]
-filenames_suffix = ["1000_invMass"]
-filenames = ["rhopi_ana_" + name for name in filenames_suffix]
+#filenames_suffix = ["1000_invMass"]
+#filenames = ["rhopi_ana_" + name for name in filenames_suffix]
+filenames_suffix = ["1000_4charged"]
+filenames = ["sigmasigmabar_ana_" + name for name in filenames_suffix]
 plotnames = filenames_suffix
 
 # Number of bins in histogram
@@ -63,7 +65,7 @@ for fileNr, filename in enumerate(filenames):
             #plt.hist(data, bins=100, histtype='step')
             plt.hist(data, bins=nBins, alpha=0.5, edgecolor='black', linewidth=1)#, histtype='step')
             if fileNr == len(filenames)-1:
-                plt.title("Histogram of branch: " + branchName + " in tree: " + treeName + " (for rhopi)")
+                plt.title("Histogram of branch: " + branchName + " in tree: " + treeName + " (for sigsigbar)")
                 plt.xlabel("Data")
                 plt.ylabel("Count")
                 plt.legend(plotnames)

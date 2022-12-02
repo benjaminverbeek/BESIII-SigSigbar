@@ -46,6 +46,7 @@ using CLHEP::HepLorentzVector;
 #include "VertexFit/KalmanKinematicFit.h"
 #include "VertexFit/VertexFit.h"
 #include "VertexFit/Helix.h"
+#include "VertexFit/SecondVertexFit.h"	// added
 #include "ParticleID/ParticleID.h"
 
 #include <vector>
@@ -58,7 +59,9 @@ const double xmass[5] = {0.000511, 0.105658, 0.139570,0.493677, 0.938272};
 //const double velc = 29.9792458;  tof_path unit in cm.
 const double velc = 299.792458;   // tof path unit in mm   <--- WHAT IS THIS? /BV
 typedef std::vector<int> Vint;
+typedef std::vector<double> Vdouble;
 typedef std::vector<HepLorentzVector> Vp4;
+typedef std::vector<WTrackParameter> VWTP;
 
 int Ncut0,Ncut1,Ncut2,Ncut3,Ncut4,Ncut5,Ncut6;  // Initializing cut-counters. OK. /BV
 
@@ -386,20 +389,31 @@ StatusCode SigmaSigmabar::execute() {
   int nCharge = 0;
 
   Hep3Vector xorigin(0,0,0);
-  
+  HepPoint3D vx(0., 0., 0.);
+	HepSymMatrix Evx(3, 0);
   //if (m_reader.isRunNumberValid(runNo)) {
    IVertexDbSvc*  vtxsvc;
   Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
   if(vtxsvc->isVertexValid()){
-  double* dbv = vtxsvc->PrimaryVertex();  // Get primary vertex.
-  double*  vv = vtxsvc->SigmaPrimaryVertex();  
-//    HepVector dbv = m_reader.PrimaryVertex(runNo);
-//    HepVector vv = m_reader.SigmaPrimaryVertex(runNo);
-    xorigin.setX(dbv[0]);
-    xorigin.setY(dbv[1]);
-    xorigin.setZ(dbv[2]);
+    double* dbv = vtxsvc->PrimaryVertex();  // Get primary vertex.
+    double*  vv = vtxsvc->SigmaPrimaryVertex();  
+  //    HepVector dbv = m_reader.PrimaryVertex(runNo);
+  //    HepVector vv = m_reader.SigmaPrimaryVertex(runNo);
+      xorigin.setX(dbv[0]);
+      xorigin.setY(dbv[1]);
+      xorigin.setZ(dbv[2]);
+      vx.setX(dbv[0]);
+      vx.setY(dbv[1]);
+      vx.setZ(dbv[2]);
+      Evx[0][0]=vv[0]*vv[0];
+      Evx[1][1]=vv[1]*vv[1];
+      Evx[2][2]=vv[2]*vv[2];
   }
-  cout << "Hello SigmaSigmabar world! v0.3." << endl; // edited!
+  VertexParameter vx_db;
+	vx_db.setVx(vx);
+	vx_db.setEvx(Evx);
+
+  cout << "Hello SigmaSigmabar world! v0.3.2. VX FIT" << endl; // edited!
   for(int i = 0; i < evtRecEvent->totalCharged(); i++){ // loop over charged tracks
     EvtRecTrackIterator itTrk=evtRecTrkCol->begin() + i;  // get track
     if(!(*itTrk)->isMdcTrackValid()) continue;  // check if MDC track is valid
@@ -811,7 +825,6 @@ StatusCode SigmaSigmabar::execute() {
 
   //
   // Loop each gamma pair, check ppi0 and pTot 
-  // TODO: We want to sum pi+/- p/-bar and add gammas? 
   //
 
   HepLorentzVector pTot;
@@ -826,15 +839,38 @@ StatusCode SigmaSigmabar::execute() {
     }
   }
   
-  // point to start of pions. TODO: also for protons?
-  RecMdcKalTrack *pipTrk = (*(evtRecTrkCol->begin()+ipip[0]))->mdcKalTrack();
-  RecMdcKalTrack *pimTrk = (*(evtRecTrkCol->begin()+ipim[0]))->mdcKalTrack();
+  Vp4 p4Lambdavtx, p4pvtx, p4pbarvtx, p4pimvtx, p4pipvtx;
+  p4Lambdavtx.clear();
+  p4pbarvtx.clear();
+  p4pvtx.clear();
+  p4pimvtx.clear();
+  p4pipvtx.clear();
+  //Vdouble  decayL_lambdabar, decayLerr_lambdabar, chisq_lambdabar;
+  //decayLerr_lambdabar.clear();
+  //decayL_lambdabar.clear();
+  //chisq_lambdabar.clear();
+  //VWTP wlambdabar_vertex;
+  //wlambdabar_vertex.clear();
+  Vdouble  decayL_Lambda, decayLerr_Lambda, chisq_Lambda;
+  decayLerr_Lambda.clear();
+  decayL_Lambda.clear();
+  chisq_Lambda.clear();
+  VWTP wLambda_vertex;
+  wLambda_vertex.clear();
+  HepPoint3D cPoint;
 
-  WTrackParameter wvpipTrk, wvpimTrk; // TODO: also for protons? see below
+  // point to start of pions. TODO: also for protons?
+  RecMdcKalTrack *pipTrk  = (*(evtRecTrkCol->begin()+ipip[0]))->mdcKalTrack();
+  RecMdcKalTrack *pimTrk  = (*(evtRecTrkCol->begin()+ipim[0]))->mdcKalTrack();
+  RecMdcKalTrack *pTrk    = (*(evtRecTrkCol->begin()+ip[0]))->mdcKalTrack();
+  RecMdcKalTrack *pbarTrk = (*(evtRecTrkCol->begin()+ipbar[0]))->mdcKalTrack();
+
+  WTrackParameter wvpipTrk, wvpimTrk, wvpTrk, wvpbarTrk; // TODO: also for protons? see below
   wvpipTrk = WTrackParameter(mpi, pipTrk->getZHelix(), pipTrk->getZError());
   wvpimTrk = WTrackParameter(mpi, pimTrk->getZHelix(), pimTrk->getZError());
+  wvpTrk   = WTrackParameter(mp,  pTrk->getZHelixP(),  pTrk->getZErrorP());
+  wvpbarTrk= WTrackParameter(mp, pbarTrk->getZHelixP(), pbarTrk->getZErrorP());
 
-// NOTE TODO: Check here how to do for protons. Defaults to pions sometimes.
 /* Default is pion, for other particles:
   wvppTrk = WTrackParameter(mp, pipTrk->getZHelixP(), pipTrk->getZErrorP());//proton
   wvmupTrk = WTrackParameter(mmu, pipTrk->getZHelixMu(), pipTrk->getZErrorMu());//muon
@@ -847,31 +883,109 @@ StatusCode SigmaSigmabar::execute() {
   //    Reconstruct two oppositely charged particle tracks, converging.
   //
 
-  HepPoint3D vx(0., 0., 0.);
-  HepSymMatrix Evx(3, 0);
-  double bx = 1E+6;
-  double by = 1E+6;
-  double bz = 1E+6;
-  Evx[0][0] = bx*bx;
-  Evx[1][1] = by*by;
-  Evx[2][2] = bz*bz;
+  // Initialize (origin + large error)  DEFINED ABOVE
+  // HepPoint3D vx(0., 0., 0.);
+  // HepSymMatrix Evx(3, 0);
+  // double bx = 1E+6;
+  // double by = 1E+6;
+  // double bz = 1E+6;
+  // Evx[0][0] = bx*bx;
+  // Evx[1][1] = by*by;
+  // Evx[2][2] = bz*bz;
 
+  // Set these initial values to the vertex object
   VertexParameter vxpar;
   vxpar.setVx(vx);
   vxpar.setEvx(Evx);
-  
+  // fit for Lambda from pi- and p
   VertexFit* vtxfit = VertexFit::instance();
   vtxfit->init();
-  vtxfit->AddTrack(0,  wvpipTrk); // TODO: proton/pi- and pi+/proton-bar instead.
+  vtxfit->AddTrack(0,  wvpTrk); // TODO: proton/pi- and pi+/proton-bar instead.
   vtxfit->AddTrack(1,  wvpimTrk);
   vtxfit->AddVertex(0, vxpar,0, 1);
-  if(!vtxfit->Fit(0)) return SUCCESS; // If the fit fails, I guess? Is it assuming from origin?
-  vtxfit->Swim(0);
-  // TODO: check total mass sums to approx. 1.115 GeV (window)
-  // lambda mass +/- something.
+  //if(!vtxfit->Fit(0)) return SUCCESS; // If the fit fails, I guess? Is it assuming from origin?
+  if(!vtxfit->Fit(0)) return SUCCESS;	// else, ... (to keep in scope)
+    vtxfit->Swim(0);
+    vtxfit->BuildVirtualParticle(0);
+    WTrackParameter wLambda = vtxfit->wVirtualTrack(0);
+    VertexParameter vtxLambda = vtxfit->vpar(0);
+    WTrackParameter wtrkproton = vtxfit->wtrk(0);
+    p4pvtx.push_back(wtrkproton.p());
+    WTrackParameter wtrkpion = vtxfit->wtrk(1);
+    p4pimvtx.push_back(wtrkpion.p());
+    //HepLorentzVector pLambda = wLambda.p();
+    //m_mLambda = pLambda.m();
+    //m_chisq_vf = vtxfit->chisq(0);
 
-  WTrackParameter wpip = vtxfit->wtrk(0);
-  WTrackParameter wpim = vtxfit->wtrk(1);
+    // Secondary vtx fit
+    SecondVertexFit *vtxfit2 = SecondVertexFit::instance();
+    vtxfit2->init();
+    vtxfit2->setPrimaryVertex(vx_db); // What is this?
+    vtxfit2->AddTrack(0, wLambda);
+    vtxfit2->setVpar(vtxLambda);
+    if(vtxfit2->Fit()) {
+      HepLorentzVector p4Lambda = vtxfit2->p4par();
+
+      p4Lambdavtx.push_back(p4Lambda);
+      decayL_Lambda.push_back(vtxfit2->decayLength());
+      decayLerr_Lambda.push_back(vtxfit2->decayLengthError());
+      chisq_Lambda.push_back(vtxfit2->chisq());
+      wLambda_vertex.push_back(vtxfit2->wpar());
+      cPoint = vtxfit2->crossPoint();
+    } else {
+			return SUCCESS;
+		}
+  
+  
+  Vp4 p4Lambdabarvtx;
+	p4Lambdabarvtx.clear();
+  Vdouble  decayL_Lambdabar, decayLerr_Lambdabar, chisq_Lambdabar;
+  decayLerr_Lambdabar.clear();
+  decayL_Lambdabar.clear();
+  chisq_Lambdabar.clear();
+  VWTP wLambdabar_vertex;
+  wLambdabar_vertex.clear();
+
+  // fit for Lambdabar from pi+ and pbar
+  vtxfit->init();
+  vtxfit->AddTrack(0,  wvpbarTrk);
+  vtxfit->AddTrack(1,  wvpipTrk);
+  vtxfit->AddVertex(0, vxpar,0, 1);
+
+  if(!vtxfit->Fit(0)) return SUCCESS;
+    vtxfit->Swim(0);
+    vtxfit->BuildVirtualParticle(0);
+    WTrackParameter wLambdabar = vtxfit->wVirtualTrack(0);
+    VertexParameter vtxLambdabar = vtxfit->vpar(0);
+    WTrackParameter wtrkprotonbar = vtxfit->wtrk(0);
+    p4pbarvtx.push_back(wtrkprotonbar.p());
+    WTrackParameter wtrkpionbar = vtxfit->wtrk(1);
+    p4pipvtx.push_back(wtrkpionbar.p());
+
+    // Secondary vtx fit
+    //SecondVertexFit *vtxfit2 = SecondVertexFit::instance(); // Still in same scope.
+    vtxfit2->init();
+    vtxfit2->setPrimaryVertex(vx_db); // What is this?
+    vtxfit2->AddTrack(0, wLambdabar);
+    vtxfit2->setVpar(vtxLambdabar);
+    if(vtxfit2->Fit()) {
+      HepLorentzVector p4Lambdabar = vtxfit2->p4par();
+
+      p4Lambdabarvtx.push_back(p4Lambdabar);
+      decayL_Lambdabar.push_back(vtxfit2->decayLength());
+      decayLerr_Lambdabar.push_back(vtxfit2->decayLengthError());
+      chisq_Lambdabar.push_back(vtxfit2->chisq());
+      wLambdabar_vertex.push_back(vtxfit2->wpar());
+      cPoint = vtxfit2->crossPoint();
+    } else {
+			return SUCCESS;
+		}
+
+  // Now I have wLambdabar and wLambda (virtual tracks)
+  // Kinematic fit with photons?
+
+  //WTrackParameter wpip = vtxfit->wtrk(0);
+  //WTrackParameter wpim = vtxfit->wtrk(1);
 
   //KinematicFit * kmfit = KinematicFit::instance();
   KalmanKinematicFit * kmfit = KalmanKinematicFit::instance();
@@ -893,8 +1007,8 @@ StatusCode SigmaSigmabar::execute() {
       for(int j = i+1; j < nGam; j++) {
         RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+iGam[j]))->emcShower();
         kmfit->init();
-        kmfit->AddTrack(0, wpip);
-        kmfit->AddTrack(1, wpim);
+        kmfit->AddTrack(0, wLambda);
+        kmfit->AddTrack(1, wLambdabar);
         kmfit->AddTrack(2, 0.0, g1Trk);
         kmfit->AddTrack(3, 0.0, g2Trk); // also protons here then...
         kmfit->AddFourMomentum(0, ecms);
@@ -917,14 +1031,17 @@ StatusCode SigmaSigmabar::execute() {
       RecEmcShower *g1Trk = (*(evtRecTrkCol->begin()+ig1))->emcShower();
       RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+ig2))->emcShower();
       kmfit->init();
-      kmfit->AddTrack(0, wpip);
-      kmfit->AddTrack(1, wpim);
+      kmfit->AddTrack(0, wLambda);
+      kmfit->AddTrack(1, wLambdabar);
       kmfit->AddTrack(2, 0.0, g1Trk); // <--- Här läggs gamma1-spåret in
       kmfit->AddTrack(3, 0.0, g2Trk); // <--- Här läggs gamma2-spåret in
       kmfit->AddFourMomentum(0, ecms);
       bool oksq = kmfit->Fit(); // Unnecessary re-check...?
       if(oksq) {
         // TODO: Also add protons here
+
+				// For now, store ppip for pLambda, 
+				// ppim for pLambdabar...
 	HepLorentzVector ppi0 = kmfit->pfit(2) + kmfit->pfit(3);  // <--- Här konstrueras lorentzvektorn för pi0 från g1, g2
   HepLorentzVector ppip = kmfit->pfit(0); // <-- Detta la jag till nu
   HepLorentzVector ppim = kmfit->pfit(1); // <-- Added 2022-11-24 21:30 /BV
@@ -932,7 +1049,7 @@ StatusCode SigmaSigmabar::execute() {
   // Lambda here.... ^
 	m_mpi0 = ppi0.m(); // <--- Här tilldelas variabeln m_mpi0 som är definierad invarianta masssan för pi0
   m_mpip = ppip.m(); // <--- Detta la jag till nu
-  m_mpim = ppim.m(); // <-- Added 2022-11-24 21:30 /BV
+  m_mpim = ppim.m(); // <-- Added 2022-11-24 21:30 /BV	// should now be Lambda mass if ok.
   m_mrho0 = prho0.m(); // <-- Added 2022-11-24 21:30 /BV
   // TODO: Here for lambda also...
 	m_chi1 = kmfit->chisq();
@@ -941,7 +1058,9 @@ StatusCode SigmaSigmabar::execute() {
       }
     }
   }
-  
+
+
+ /*	// Commented out 5C fit. 2022-12-02 17:24 /BV
   //
   //  Apply Kinematic 5C Fit
   //
@@ -1025,6 +1144,7 @@ StatusCode SigmaSigmabar::execute() {
     } 
   }
   return StatusCode::SUCCESS;
+*/ 
 }
 
 

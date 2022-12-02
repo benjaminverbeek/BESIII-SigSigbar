@@ -542,7 +542,9 @@ StatusCode SigmaSigmabar::execute() {
       if(!(*itTrk)->isMdcDedxValid())continue;
       RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
       RecMdcDedx* dedxTrk = (*itTrk)->mdcDedx();
-      m_ptrk = mdcTrk->p();
+      m_ptrk = mdcTrk->p();   // This momentum can be of use! Clear split here.
+      // Can make a cut here perhaps? What do I do with the ToF/dEdx then?
+      // I don't know what to use when
 
       m_chie = dedxTrk->chiE();
       m_chimu = dedxTrk->chiMu();
@@ -738,10 +740,10 @@ StatusCode SigmaSigmabar::execute() {
 
     m_tuple11->write();
 
-    if((pid->probPion() < 0.001) && (pid->probProton() < 0.001)) continue; // Edited.
-//    if(pid->pdf(2)<pid->pdf(3)) continue; //  for Likelihood Method(0=electron 1=muon 2=pion 3=kaon 4=proton) 
-// TODO: Set two different branches depending on if it's a pion or a proton. Can probably
-// identify simply by checking relative momentum, or use the above? Not sure. Ask?
+    if((pid->probPion() < 0.001) && (pid->probProton() < 0.001)) continue; // Edited. If too unlikely,
+    // throw it away.
+    // TODO: Set two different branches depending on if it's a pion or a proton. Can probably
+// identify simply by checking relative momentum
 
 
     RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();//After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
@@ -753,7 +755,10 @@ StatusCode SigmaSigmabar::execute() {
     ptrk.setPy(mdcKalTrk->py());
     ptrk.setPz(mdcKalTrk->pz());
     double p3 = ptrk.mag();
+    // Add this momentum to output... curious is two separate peaks:
 
+
+    // Characterize!
     // proper setE...? Will something break? Experiment.
     if((mdcKalTrk->charge() > 0) && isPion ) { // if positive & pion, its pi+
       ipip.push_back(iGood[i]); // dep
@@ -778,7 +783,7 @@ StatusCode SigmaSigmabar::execute() {
       ppbar.push_back(ptrk); // 4-momentum of each proton added to vector
     }
 //      ptrk = ptrk.boost(-0.011,0,0);//boost to cms
-  }
+  } // characterized tracks and momenta now stored to respective lists.
 
 
   int npip = ipip.size();
@@ -798,6 +803,11 @@ StatusCode SigmaSigmabar::execute() {
   //  ######### ########## ########## ########## ########## ########## #########
   // ########## START KINEMATIC FIT. #########
   //######### ########## ########## ########## ########## ########## #########
+  // TODO: What now? Secondary vx fit to get pion + proton to virtual lambda?
+
+
+  // Construct virtual lambda. Check if pi+ and pbar origin from same vertex
+  // Check if pi- and p origin from same vertex
 
   //
   // Loop each gamma pair, check ppi0 and pTot 

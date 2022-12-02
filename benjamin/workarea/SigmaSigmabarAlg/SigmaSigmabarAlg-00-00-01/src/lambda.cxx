@@ -517,7 +517,8 @@ StatusCode Lambda::execute()	{
 		hcos_total->Fill(mc_p4lambda.cosTheta());
 
 		Hep3Vector xorigin(0,0,0);
-		
+		HepPoint3D vx(0., 0., 0.);
+		HepSymMatrix Evx(3, 0);
 		IVertexDbSvc* vtxsvc;
 		Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
 		if(vtxsvc->isVertexValid()){

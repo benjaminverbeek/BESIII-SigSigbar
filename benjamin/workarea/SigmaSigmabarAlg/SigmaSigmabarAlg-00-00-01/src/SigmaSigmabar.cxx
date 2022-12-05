@@ -1,9 +1,6 @@
-// This is v0.3, where nCharged is changed to 4, required IP-region is made larger
-// photon cut unchanged. 
-// And editing PID: it identifies pi+, pi-, p, pbar
-// Seems to work. Time to check some plots. Cleaning up PID-part.
-// Also added primary and secondary vetex fit!
-//
+// This is v0.4.
+// All functional. Improvements of efficiency sought.
+// 
 // Benjamin Verbeek, Hefei, 2022-11-29
 
 #include "GaudiKernel/MsgStream.h"
@@ -51,22 +48,21 @@ using CLHEP::HepLorentzVector;
 #include "ParticleID/ParticleID.h"
 
 #include <vector>
-//const double twopi = 6.2831853;
-//const double pi = 3.1415927;
-const double mpi = 0.139570;  // pion mass [GeV]
-const double mp  = 0.938272;  // Proton mass, from PDG 2022 [GeV]
-// Lambda mass
 
-// TODO: Maybe lambda too? Sigma?
+const double mpi = 0.139570;  // pion mass [GeV]
+const double mproton  = 0.938272;  // Proton mass, from PDG 2022 [GeV]
+const double mlambda  = 1.115683; // Lambda mass, PDG 2022
+const double msigma0  = 1.192642; // Sigma0 mass, PDG 2022
+
 const double xmass[5] = {0.000511, 0.105658, 0.139570,0.493677, 0.938272};
-//const double velc = 29.9792458;  tof_path unit in cm.
-const double velc = 299.792458;   // tof path unit in mm   <--- WHAT IS THIS? /BV
+
+const double velc = 299.792458;   // tof path unit in mm
 typedef std::vector<int> Vint;
 typedef std::vector<double> Vdouble;
 typedef std::vector<HepLorentzVector> Vp4;
 typedef std::vector<WTrackParameter> VWTP;
 
-int Ncut0,Ncut1,Ncut2,Ncut3,Ncut4,Ncut5,Ncut6,Ncut30, Ncut31;  // Initializing cut-counters. OK. /BV
+int Ncut0,Ncut1,Ncut2,Ncut3,Ncut4,Ncut6,Ncut30,Ncut31;  // Initializing cut-counters. OK. /BV
 int Npi, Nproton; // Initializing counters for pions and protons
 
 /////////////////////////////////////////////////////////////////////////////
@@ -75,9 +71,8 @@ SigmaSigmabar::SigmaSigmabar(const std::string& name, ISvcLocator* pSvcLocator) 
   Algorithm(name, pSvcLocator) {
   
   //Declare the properties  
-  declareProperty("Vr0cut", m_vr0cut=1.0);  // Cylinder cut condition
-  declareProperty("Vz0cut", m_vz0cut=20.0); // From memo is 20.0 /BV 221129. 
-  // TODO: polar angle cut instead
+  declareProperty("Vr0cut", m_vr0cut=10.0);  // Cylinder cut condition
+  declareProperty("Vz0cut", m_vz0cut=20.0); // From memo is 20.0 /BV 221129.
 
   declareProperty("EnergyThreshold", m_energyThreshold=0.04); // Fake gamma cut
   declareProperty("GammaPhiCut", m_gammaPhiCut=20.0);
@@ -86,7 +81,6 @@ SigmaSigmabar::SigmaSigmabar(const std::string& name, ISvcLocator* pSvcLocator) 
 
   // Flag: use or not (1/0)
   declareProperty("Test4C", m_test4C = 1);
-  declareProperty("Test5C", m_test5C = 1);
   declareProperty("CheckDedx", m_checkDedx = 1);
   declareProperty("CheckTof",  m_checkTof = 1);
 }
@@ -161,6 +155,8 @@ StatusCode SigmaSigmabar::initialize(){
   status = m_tuple4->addItem ("mpip",   m_mpip);  // TODO
   status = m_tuple4->addItem ("mpim",   m_mpim);  // Added by me before
   status = m_tuple4->addItem ("mrho0",   m_mrho0);
+  // NEW
+  status = m_tuple4->addItem ("mrho0",   m_mrho0);
       }
       else    { 
 	log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple4) << endmsg;
@@ -169,38 +165,6 @@ StatusCode SigmaSigmabar::initialize(){
     }
   } // test 4C
 
-
-  if(m_test5C==1) {
-    NTuplePtr nt5(ntupleSvc(), "FILE1/fit5c");
-    if ( nt5 ) m_tuple5 = nt5;
-    else {
-      m_tuple5 = ntupleSvc()->book ("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
-      if ( m_tuple5 )    {
-	status = m_tuple5->addItem ("chi2",   m_chi2);
-	status = m_tuple5->addItem ("mrh0",   m_mrh0);  // Change to my particles? /BV
-	status = m_tuple5->addItem ("mrhp",   m_mrhp);  // TODO
-	status = m_tuple5->addItem ("mrhm",   m_mrhm);
-      }
-      else    { 
-	log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple5) << endmsg;
-	return StatusCode::FAILURE;
-      }
-    }
- 
-    NTuplePtr nt6(ntupleSvc(), "FILE1/geff");
-    if ( nt6 ) m_tuple6 = nt6;
-    else {
-      m_tuple6 = ntupleSvc()->book ("FILE1/geff", CLID_ColumnWiseTuple, "ks N-Tuple example");
-      if ( m_tuple6 )    {
-	status = m_tuple6->addItem ("fcos",   m_fcos);
-	status = m_tuple6->addItem ("elow",   m_elow);
-      }
-      else    { 
-	log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple6) << endmsg;
-	return StatusCode::FAILURE;
-      }
-    }
-  } // test 5c
 
   if(m_checkDedx == 1) {
     NTuplePtr nt7(ntupleSvc(), "FILE1/dedx");
@@ -777,13 +741,13 @@ StatusCode SigmaSigmabar::execute() {
       // Added: now check for proton in the same way:
     } else if ((mdcKalTrk->charge() > 0) && !isPion) { // if positive & proton, its p+
       ip.push_back(iGood[i]);
-      ptrk.setE(sqrt(p3*p3+mp*mp));
+      ptrk.setE(sqrt(p3*p3+mproton*mproton));
       pp.push_back(ptrk); // 4-momentum of each proton added to vector
 
     // and for pbar
     } else if ((mdcKalTrk->charge() < 0) && !isPion) {  // if not positive and is proton, its pbar-
       ipbar.push_back(iGood[i]);
-      ptrk.setE(sqrt(p3*p3+mp*mp)); 
+      ptrk.setE(sqrt(p3*p3+mproton*mproton)); 
       ppbar.push_back(ptrk); // 4-momentum of each proton added to vector
     }
 //      ptrk = ptrk.boost(-0.011,0,0);//boost to cms
@@ -858,11 +822,11 @@ StatusCode SigmaSigmabar::execute() {
   WTrackParameter wvpipTrk, wvpimTrk, wvpTrk, wvpbarTrk; // TODO: also for protons? see below
   wvpipTrk = WTrackParameter(mpi, pipTrk->getZHelix(), pipTrk->getZError());
   wvpimTrk = WTrackParameter(mpi, pimTrk->getZHelix(), pimTrk->getZError());
-  wvpTrk   = WTrackParameter(mp,  pTrk->getZHelixP(),  pTrk->getZErrorP());
-  wvpbarTrk= WTrackParameter(mp, pbarTrk->getZHelixP(), pbarTrk->getZErrorP());
+  wvpTrk   = WTrackParameter(mproton,  pTrk->getZHelixP(),  pTrk->getZErrorP());
+  wvpbarTrk= WTrackParameter(mproton, pbarTrk->getZHelixP(), pbarTrk->getZErrorP());
 
 /* Default is pion, for other particles:
-  wvppTrk = WTrackParameter(mp, pipTrk->getZHelixP(), pipTrk->getZErrorP());//proton
+  wvppTrk = WTrackParameter(mproton, pipTrk->getZHelixP(), pipTrk->getZErrorP());//proton
   wvmupTrk = WTrackParameter(mmu, pipTrk->getZHelixMu(), pipTrk->getZErrorMu());//muon
   wvepTrk = WTrackParameter(me, pipTrk->getZHelixE(), pipTrk->getZErrorE());//electron
   wvkpTrk = WTrackParameter(mk, pipTrk->getZHelixK(), pipTrk->getZErrorK());//kaon
@@ -1033,23 +997,31 @@ StatusCode SigmaSigmabar::execute() {
       kmfit->AddFourMomentum(0, ecms);
       bool oksq = kmfit->Fit(); // Unnecessary re-check...?
       if(oksq) {
-        // TODO: Also add protons here
 
-				// For now, store ppip for pLambda, 
-				// ppim for pLambdabar...
-		// NOTE: TODO: These should be renamed.
 	HepLorentzVector ppi0 = kmfit->pfit(2) + kmfit->pfit(3);  // <--- Här konstrueras lorentzvektorn för pi0 från g1, g2
   HepLorentzVector ppip = kmfit->pfit(0); // <-- Detta la jag till nu
   HepLorentzVector ppim = kmfit->pfit(1); // <-- Added 2022-11-24 21:30 /BV
   HepLorentzVector prho0 = kmfit->pfit(0) + kmfit->pfit(1); // For rho0? 
-  // Lambda here.... ^
+  // NEW:
+  HepLorentzVector pLambda = kmfit->pfit(0);
+  HepLorentzVector pLambdabar = kmfit->pfit(1);
+  HepLorentzVector pg1 = kmfit->pfit(2);
+  HepLorentzVector pg2 = kmfit->pfit(3);
 
-	// NOTE: TODO: These should be renamed.
+  // Also try to find the best sigma candidate
+
 	m_mpi0 = ppi0.m(); // <--- Här tilldelas variabeln m_mpi0 som är definierad invarianta masssan för pi0
   m_mpip = ppip.m(); // <--- Detta la jag till nu
   m_mpim = ppim.m(); // <-- Added 2022-11-24 21:30 /BV	// should now be Lambda mass if ok.
   m_mrho0 = prho0.m(); // <-- Added 2022-11-24 21:30 /BV
-  // TODO: Here for lambda also...
+  // NEW
+  m_mLambda = pLambda.m();
+  m_mLambdabar = pLambdabar.m();
+  m_mg1 = pg1.m();
+  m_mg2 = pg2.m();
+
+
+  
 	m_chi1 = kmfit->chisq();
 	m_tuple4->write();
         Ncut4++;    // What survived the reconstruction...
@@ -1058,92 +1030,9 @@ StatusCode SigmaSigmabar::execute() {
   }
 
 
- /*	// Commented out 5C fit. 2022-12-02 17:24 /BV
-  //
-  //  Apply Kinematic 5C Fit
-  //
+Ncut6++;
+} // end execute()
 
-  // find the best combination over all possible pi+ pi- gamma gamma pair
-  // TODO: Not relevant for me? Rather, 6C fit? How to know if sigma or just lambda + noise gamma?
-  if(m_test5C==1) {
-//    double ecms = 3.097;
-    HepLorentzVector ecms(0.034,0,0,3.097);
-    double chisq = 9999.;
-    int ig1 = -1;
-    int ig2 = -1;
-    for(int i = 0; i < nGam-1; i++) {
-      RecEmcShower *g1Trk = (*(evtRecTrkCol->begin()+iGam[i]))->emcShower();
-      for(int j = i+1; j < nGam; j++) {
-	RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+iGam[j]))->emcShower();
-	kmfit->init();
-	kmfit->AddTrack(0, wpip);
-	kmfit->AddTrack(1, wpim);
-	kmfit->AddTrack(2, 0.0, g1Trk);
-	kmfit->AddTrack(3, 0.0, g2Trk);
-	kmfit->AddResonance(0, 0.135, 2, 3);
-	kmfit->AddFourMomentum(1, ecms);
-	if(!kmfit->Fit(0)) continue;
-	if(!kmfit->Fit(1)) continue;
-	bool oksq = kmfit->Fit();
-	if(oksq) {
-	  double chi2 = kmfit->chisq();
-	  if(chi2 < chisq) {
-	    chisq = chi2;
-	    ig1 = iGam[i];
-	    ig2 = iGam[j];
-	  }
-	}
-      }
-    }
-  
-
-    log << MSG::INFO << " chisq = " << chisq <<endreq;
-
-    if(chisq < 200) {
-      RecEmcShower* g1Trk = (*(evtRecTrkCol->begin()+ig1))->emcShower();
-      RecEmcShower* g2Trk = (*(evtRecTrkCol->begin()+ig2))->emcShower();
-
-      kmfit->init();
-      kmfit->AddTrack(0, wpip);
-      kmfit->AddTrack(1, wpim);
-      kmfit->AddTrack(2, 0.0, g1Trk);
-      kmfit->AddTrack(3, 0.0, g2Trk);
-      kmfit->AddResonance(0, 0.135, 2, 3);
-      kmfit->AddFourMomentum(1, ecms);
-      bool oksq = kmfit->Fit();
-      if(oksq){
-	HepLorentzVector ppi0 = kmfit->pfit(2) + kmfit->pfit(3);
-	HepLorentzVector prho0 = kmfit->pfit(0) + kmfit->pfit(1);
-	HepLorentzVector prhop = ppi0 + kmfit->pfit(0);
-	HepLorentzVector prhom = ppi0 + kmfit->pfit(1);
-	
-	m_chi2  = kmfit->chisq();
-	m_mrh0 = prho0.m();
-	m_mrhp = prhop.m();
-	m_mrhm = prhom.m();
-	double eg1 = (kmfit->pfit(2)).e();
-	double eg2 = (kmfit->pfit(3)).e();
-	double fcos = abs(eg1-eg2)/ppi0.rho();
-	m_tuple5->write();
-        Ncut5++;
-	// 
-	//  Measure the photon detection efficiences via
-	//          J/psi -> rho0 pi0
-	//
-	if(fabs(prho0.m()-0.770)<0.150) {  
-	  if(fabs(fcos)<0.99) {
-	    m_fcos = (eg1-eg2)/ppi0.rho();
-	    m_elow =  (eg1 < eg2) ? eg1 : eg2;
-	    m_tuple6->write();
-            Ncut6++;
-	  }
-	} // rho0 cut
-      }  //oksq
-    } 
-  }
-  return StatusCode::SUCCESS;
-*/ 
-}
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
@@ -1152,12 +1041,11 @@ StatusCode SigmaSigmabar::finalize() {
   cout<<"nGood==4, nCharge==0: "<<Ncut1<<endl;
   cout<<"nGam>=2:              "<<Ncut2<<endl;
   cout<<"Pass Pid:             "<<Ncut3<<endl;
-  cout<<"Pass lambdavx:        "<<Ncut30<<endl;
-  cout<<"Pass lambdabarvx:     "<<Ncut31<<endl;
+  cout<<"Pass lambda tag:      "<<Ncut30<<endl;
+  cout<<"Pass lambdabar tag:   "<<Ncut31<<endl;
   cout<<"Pass 4C:              "<<Ncut4<<endl;
-  cout<<"Pass 5C:              "<<Ncut5<<endl;
-  cout<<"J/psi->rho0 pi0:      "<<Ncut6<<endl;
-  cout<<"Npi, Nproton, mom.: " << Npi << " " << Nproton << endl;
+  cout<<"J/psi->Sig0 Sigbar0:  "<<Ncut6<<endl;
+  cout<<"Npi, Nproton, mom.:   "<< Npi << " " << Nproton << endl;
   MsgStream log(msgSvc(), name());
   log << MSG::INFO << "in finalize()" << endmsg;
   return StatusCode::SUCCESS;

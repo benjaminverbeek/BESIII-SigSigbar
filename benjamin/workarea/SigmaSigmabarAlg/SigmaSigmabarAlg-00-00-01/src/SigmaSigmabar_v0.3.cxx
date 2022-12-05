@@ -2,6 +2,7 @@
 // photon cut unchanged. 
 // And editing PID: it identifies pi+, pi-, p, pbar
 // Seems to work. Time to check some plots. Cleaning up PID-part.
+// Also added primary and secondary vetex fit!
 //
 // Benjamin Verbeek, Hefei, 2022-11-29
 
@@ -54,6 +55,8 @@ using CLHEP::HepLorentzVector;
 //const double pi = 3.1415927;
 const double mpi = 0.139570;  // pion mass [GeV]
 const double mp  = 0.938272;  // Proton mass, from PDG 2022 [GeV]
+// Lambda mass
+
 // TODO: Maybe lambda too? Sigma?
 const double xmass[5] = {0.000511, 0.105658, 0.139570,0.493677, 0.938272};
 //const double velc = 29.9792458;  tof_path unit in cm.
@@ -516,7 +519,7 @@ StatusCode SigmaSigmabar::execute() {
     m_dang = dang;
     m_eraw = eraw;
     m_tuple2->write(); // Save to output .root m_tuple2
-    if(eraw < m_energyThreshold) continue; // CUT: Energy of gamma must be above threshold
+    if(eraw < m_energyThreshold) continue; // CUT: Energy of gamma must be below threshold
 //    if((fabs(dthe) < m_gammaThetaCut) && (fabs(dphi)<m_gammaPhiCut) ) continue;
     if(fabs(dang) < m_gammaAngleCut) continue; // CUT: Angle between charged track and gamma must be less than m_gammaAngleCut
     //                                                ^ TODO ok limit?
@@ -738,22 +741,24 @@ StatusCode SigmaSigmabar::execute() {
     pid->calculate();
     if(!(pid->IsPidInfoValid())) continue;
     RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
-    m_ptrk_pid = mdcTrk->p();   // NOTE: TODO: Q: Why don't I see two peaks when plotting this?
-    // Possibly: discern proton/pion by momentum here.
+    m_ptrk_pid = mdcTrk->p();   // // This shows a nice split into pions and protons. Cut here?
+    // Possibly: discern proton/pion by momentum here. Skip the rest
+
     m_cost_pid = cos(mdcTrk->theta());
     m_dedx_pid = pid->chiDedx(2);
     m_tof1_pid = pid->chiTof1(2);
     m_tof2_pid = pid->chiTof2(2);
-    // get max of pid probability for proton/pion 
-    bool isPion = pid->probPion() > pid->probProton();  // added 11-30
+    // get max of pid probability for proton/pion... replace this by: (??)
+    bool isPion = (m_ptrk_pid < 0.45) ? true : false; // Value taken from plot/memo 
+    /*bool isPion = pid->probPion() > pid->probProton();  // added 11-30
     if (isPion) {  // added
       m_prob_pid = pid->probPion();
     } else {
       m_prob_pid = pid->probProton();
     }
-
+*/
     m_tuple11->write();
-
+    // If change, keep prob-checks here? 
     if((pid->probPion() < 0.001) && (pid->probProton() < 0.001)) continue; // Edited. If too unlikely,
     // throw it away.
     // TODO: Set two different branches depending on if it's a pion or a proton. Can probably
@@ -773,7 +778,6 @@ StatusCode SigmaSigmabar::execute() {
 
 
     // Characterize!
-    // proper setE...? Will something break? Experiment.
     if((mdcKalTrk->charge() > 0) && isPion ) { // if positive & pion, its pi+
       ipip.push_back(iGood[i]); // dep
       ptrk.setE(sqrt(p3*p3+mpi*mpi)); // This is why proton mass is needed. TODO: define in intialize
@@ -904,6 +908,7 @@ StatusCode SigmaSigmabar::execute() {
   vtxfit->AddTrack(1,  wvpimTrk);
   vtxfit->AddVertex(0, vxpar,0, 1);
   //if(!vtxfit->Fit(0)) return SUCCESS; // If the fit fails, I guess? Is it assuming from origin?
+  // SECONDARY VERTEX FIT
   if(!vtxfit->Fit(0)) return SUCCESS;	// else, ... (to keep in scope)
     vtxfit->Swim(0);
     vtxfit->BuildVirtualParticle(0);
@@ -917,7 +922,7 @@ StatusCode SigmaSigmabar::execute() {
     //m_mLambda = pLambda.m();
     //m_chisq_vf = vtxfit->chisq(0);
 
-    // Secondary vtx fit
+    // PRIMARY VERTEX FIT
     SecondVertexFit *vtxfit2 = SecondVertexFit::instance();
     vtxfit2->init();
     vtxfit2->setPrimaryVertex(vx_db); // What is this?
@@ -976,7 +981,7 @@ StatusCode SigmaSigmabar::execute() {
       decayLerr_Lambdabar.push_back(vtxfit2->decayLengthError());
       chisq_Lambdabar.push_back(vtxfit2->chisq());
       wLambdabar_vertex.push_back(vtxfit2->wpar());
-      cPoint = vtxfit2->crossPoint();
+      //cPoint = vtxfit2->crossPoint(); // only done first time. Why?
     } else {
 			return SUCCESS;
 		}
@@ -990,8 +995,7 @@ StatusCode SigmaSigmabar::execute() {
   //KinematicFit * kmfit = KinematicFit::instance();
   KalmanKinematicFit * kmfit = KalmanKinematicFit::instance();
 
-  //  TODO: Perform this, but for lambdas. Or maybe just pi's, p's and lambdas in one big pile?
-  // Still need above results. Will be a 6C? Or lambdas before?
+  //  
   //  Apply Kinematic 4C fit
   // 
   cout<<"before 4c"<<endl;
@@ -1024,7 +1028,7 @@ StatusCode SigmaSigmabar::execute() {
             }
     }
     
-    // WHY DO THIS? Already done above? Again to ensure proper choice of 4-mom?
+    // Get the best values
     // Else what? Crash?
     if(chisq < 200) {   // Memo suggests less than 100...
 
@@ -1042,11 +1046,14 @@ StatusCode SigmaSigmabar::execute() {
 
 				// For now, store ppip for pLambda, 
 				// ppim for pLambdabar...
+		// NOTE: TODO: These should be renamed.
 	HepLorentzVector ppi0 = kmfit->pfit(2) + kmfit->pfit(3);  // <--- Här konstrueras lorentzvektorn för pi0 från g1, g2
   HepLorentzVector ppip = kmfit->pfit(0); // <-- Detta la jag till nu
   HepLorentzVector ppim = kmfit->pfit(1); // <-- Added 2022-11-24 21:30 /BV
   HepLorentzVector prho0 = kmfit->pfit(0) + kmfit->pfit(1); // For rho0? 
   // Lambda here.... ^
+
+	// NOTE: TODO: These should be renamed.
 	m_mpi0 = ppi0.m(); // <--- Här tilldelas variabeln m_mpi0 som är definierad invarianta masssan för pi0
   m_mpip = ppip.m(); // <--- Detta la jag till nu
   m_mpim = ppim.m(); // <-- Added 2022-11-24 21:30 /BV	// should now be Lambda mass if ok.

@@ -66,7 +66,8 @@ typedef std::vector<double> Vdouble;
 typedef std::vector<HepLorentzVector> Vp4;
 typedef std::vector<WTrackParameter> VWTP;
 
-int Ncut0,Ncut1,Ncut2,Ncut3,Ncut4,Ncut5,Ncut6;  // Initializing cut-counters. OK. /BV
+int Ncut0,Ncut1,Ncut2,Ncut3,Ncut4,Ncut5,Ncut6,Ncut30, Ncut31;  // Initializing cut-counters. OK. /BV
+int Npi, Nproton; // Initializing counters for pions and protons
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -312,12 +313,15 @@ StatusCode SigmaSigmabar::initialize(){
       status = m_tuple11->addItem ("tof1",   m_tof1_pid);
       status = m_tuple11->addItem ("tof2",   m_tof2_pid);
       status = m_tuple11->addItem ("prob",   m_prob_pid);
+      status = m_tuple11->addItem ("pproton",m_pproton_pid);
+      status = m_tuple11->addItem ("ppion",  m_ppion_pid);
     }
     else    { 
       log << MSG::ERROR << "    Cannot book N-tuple:" << long(m_tuple11) << endmsg;
       return StatusCode::FAILURE;
     }
   }
+  hist = new TH1D("h1","h1",100,0,10);
 
 
   //
@@ -453,14 +457,16 @@ StatusCode SigmaSigmabar::execute() {
 //    if(fabs(Rxy) >= m_vr0cut) continue; 
 
   // THROW AWAY TRACKS NOT ORIGINATING FROM INTERACTION REGION  
-    if(fabs(Rvz0) >= m_vz0cut) continue;  // CHNGD: from 10.0 to m_vz0cut
-    if(fabs(Rvxy0) >= 1.0) continue;  // TODO: Here? Angle? // NOTE: Xiaorong claims angle cut is superfluous anyway. /BV 11-30
+    //if(fabs(Rvz0) >= m_vz0cut) continue;  // CHNGD: from 10.0 to m_vz0cut
+    //if(fabs(Rvxy0) >= 10.0) continue;  // TODO: Here? Angle? // NOTE: Xiaorong claims angle cut is superfluous anyway. /BV 11-30
 
     
     iGood.push_back(i); // OK, add to list of good charged tracks
     nCharge += mdcTrk->charge();  // add the charge (+1 or -1)
   }
   
+  hist->Fill(iGood.size()); // Fill histogram with number of charged tracks
+
   //
   // Finish Good Charged Track Selection (we expect pi+, pi-, p, pbar)
   //
@@ -749,20 +755,20 @@ StatusCode SigmaSigmabar::execute() {
     m_tof1_pid = pid->chiTof1(2);
     m_tof2_pid = pid->chiTof2(2);
     // get max of pid probability for proton/pion... replace this by: (??)
-    bool isPion = (m_ptrk_pid < 0.45) ? true : false; // Value taken from plot/memo 
+    bool isPion = (m_ptrk_pid < 0.45) ? true : false; // Value taken from plot/memo // Seems to work fine. One switches.
     /*bool isPion = pid->probPion() > pid->probProton();  // added 11-30
     if (isPion) {  // added
       m_prob_pid = pid->probPion();
     } else {
       m_prob_pid = pid->probProton();
-    }
-*/
-    m_tuple11->write();
+    }*/
+
     // If change, keep prob-checks here? 
-    if((pid->probPion() < 0.001) && (pid->probProton() < 0.001)) continue; // Edited. If too unlikely,
-    // throw it away.
-    // TODO: Set two different branches depending on if it's a pion or a proton. Can probably
-// identify simply by checking relative momentum
+    //if((pid->probPion() < 0.001) && (pid->probProton() < 0.001)) continue; // Edited. If too unlikely, throw it away.
+    isPion ? Npi++ : Nproton++; // Count pions and protons
+    isPion ? m_ppion_pid = (mdcTrk->p()) : m_pproton_pid = (mdcTrk->p()); // Assign momentum to pion/proton, can plot later
+    
+    m_tuple11->write();  
 
 
     RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();//After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
@@ -889,18 +895,19 @@ StatusCode SigmaSigmabar::execute() {
 
   // Initialize (origin + large error)  DEFINED ABOVE
   // HepPoint3D vx(0., 0., 0.);
-  // HepSymMatrix Evx(3, 0);
-  // double bx = 1E+6;
-  // double by = 1E+6;
-  // double bz = 1E+6;
-  // Evx[0][0] = bx*bx;
-  // Evx[1][1] = by*by;
-  // Evx[2][2] = bz*bz;
+  HepSymMatrix Evx2(3, 0);
+  double bx = 1E+6;
+  double by = 1E+6;
+  double bz = 1E+6;
+  Evx2[0][0] = bx*bx;
+  Evx2[1][1] = by*by;
+  Evx2[2][2] = bz*bz;
 
   // Set these initial values to the vertex object
   VertexParameter vxpar;
   vxpar.setVx(vx);
-  vxpar.setEvx(Evx);
+
+  vxpar.setEvx(Evx2);  // Previously wrong error
   // fit for Lambda from pi- and p
   VertexFit* vtxfit = VertexFit::instance();
   vtxfit->init();
@@ -908,7 +915,7 @@ StatusCode SigmaSigmabar::execute() {
   vtxfit->AddTrack(1,  wvpimTrk);
   vtxfit->AddVertex(0, vxpar,0, 1);
   //if(!vtxfit->Fit(0)) return SUCCESS; // If the fit fails, I guess? Is it assuming from origin?
-  // SECONDARY VERTEX FIT
+  // Primary VERTEX FIT
   if(!vtxfit->Fit(0)) return SUCCESS;	// else, ... (to keep in scope)
     vtxfit->Swim(0);
     vtxfit->BuildVirtualParticle(0);
@@ -922,12 +929,13 @@ StatusCode SigmaSigmabar::execute() {
     //m_mLambda = pLambda.m();
     //m_chisq_vf = vtxfit->chisq(0);
 
-    // PRIMARY VERTEX FIT
+    // Secondary VERTEX FIT
     SecondVertexFit *vtxfit2 = SecondVertexFit::instance();
     vtxfit2->init();
-    vtxfit2->setPrimaryVertex(vx_db); // What is this?
+    vtxfit2->setPrimaryVertex(vx_db); // What is this? average interaction point from database
     vtxfit2->AddTrack(0, wLambda);
     vtxfit2->setVpar(vtxLambda);
+
     if(vtxfit2->Fit()) {
       HepLorentzVector p4Lambda = vtxfit2->p4par();
 
@@ -941,6 +949,7 @@ StatusCode SigmaSigmabar::execute() {
 			return SUCCESS;
 		}
   
+  Ncut30++;
   
   Vp4 p4Lambdabarvtx;
 	p4Lambdabarvtx.clear();
@@ -980,11 +989,13 @@ StatusCode SigmaSigmabar::execute() {
       decayL_Lambdabar.push_back(vtxfit2->decayLength());
       decayLerr_Lambdabar.push_back(vtxfit2->decayLengthError());
       chisq_Lambdabar.push_back(vtxfit2->chisq());
-      wLambdabar_vertex.push_back(vtxfit2->wpar());
+      wLambdabar_vertex.push_back(vtxfit2->wpar()); // push_back not needed
       //cPoint = vtxfit2->crossPoint(); // only done first time. Why?
     } else {
 			return SUCCESS;
 		}
+
+  Ncut31++;
 
   // Now I have wLambdabar and wLambda (virtual tracks)
   // Kinematic fit with photons?
@@ -1011,8 +1022,8 @@ StatusCode SigmaSigmabar::execute() {
       for(int j = i+1; j < nGam; j++) {
         RecEmcShower *g2Trk = (*(evtRecTrkCol->begin()+iGam[j]))->emcShower();
         kmfit->init();
-        kmfit->AddTrack(0, wLambda);
-        kmfit->AddTrack(1, wLambdabar);
+        kmfit->AddTrack(0, wLambda_vertex[0]);
+        kmfit->AddTrack(1, wLambdabar_vertex[0]);
         kmfit->AddTrack(2, 0.0, g1Trk);
         kmfit->AddTrack(3, 0.0, g2Trk); // also protons here then...
         kmfit->AddFourMomentum(0, ecms);
@@ -1164,6 +1175,9 @@ StatusCode SigmaSigmabar::finalize() {
   cout<<"Pass 4C:              "<<Ncut4<<endl;
   cout<<"Pass 5C:              "<<Ncut5<<endl;
   cout<<"J/psi->rho0 pi0:      "<<Ncut6<<endl;
+  cout<<"Pass lambdavx:        "<<Ncut30<<endl;
+  cout<<"Pass lambdabarvx:       "<<Ncut31<<endl;
+  cout<<"Npi, Nproton, mom.: " << Npi << " " << Nproton << endl;
   MsgStream log(msgSvc(), name());
   log << MSG::INFO << "in finalize()" << endmsg;
   return StatusCode::SUCCESS;

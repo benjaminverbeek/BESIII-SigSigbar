@@ -23,7 +23,8 @@ baseFilePath = r"C:\Users\benja\OneDrive\Documents\15c project\USTC\all_ana_root
 #filenames_suffix = ["1000_invMass", "100_noIPcheck_noChargeCheck", "100_noIPcheck", "100_raw", "50_raw"]
 #filenames_suffix = ["1000_invMass"]
 #filenames = ["rhopi_ana_" + name for name in filenames_suffix]
-filenames_suffix = ["1000_4charged"]
+# "1000_4charged" "1000_vxfit" "1000_momentumpid","1000_vxfit2"
+filenames_suffix = ["1000_mompidplot", "1000_probpidplot", "1000_vxfit2"]
 filenames = ["sigmasigmabar_ana_" + name for name in filenames_suffix]
 plotnames = filenames_suffix
 
@@ -58,6 +59,10 @@ for fileNr, filename in enumerate(filenames):
 
             branchName = str(branch).split("'")[1]
             treeName   = str(tree).split("'")[1]
+            if branchName == "pproton" or branchName == "ppion": 
+                # remove all zeros from data
+                data = data[data != 0]
+
             sys.stdout.write("\033[K") # Clear to the end of line
             print(f"Plotting data: {branchName} in {treeName}...", end='\r')
             # Plot data as histogram without filled bins

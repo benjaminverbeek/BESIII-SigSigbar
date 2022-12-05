@@ -1,12 +1,12 @@
 execute()
 event 999
-Hello SigmaSigmabar world! v0.0.
+Hello SigmaSigmabar world! v0.3.2. VX FIT + momentum PID
 ApplicationMgr       INFO Application Manager Stopped successfully
 total number:         1000
 nGood==4, nCharge==0: 132
 nGam>=2:              96
-Pass Pid:             82
-Pass 4C:              0
+Pass Pid:             83
+Pass 4C:              55
 Pass 5C:              0
 J/psi->rho0 pi0:      0
 ApplicationMgr       INFO Application Manager Finalized successfully
